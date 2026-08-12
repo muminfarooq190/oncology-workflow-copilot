@@ -56,41 +56,53 @@ def is_explicitly_synthetic(bundle: dict[str, Any]) -> bool:
     )
 
 
-def validate_eval_cases() -> int:
+def validate_eval_cases() -> set[str]:
     manifests = sorted((ROOT / "evals" / "cases").glob("*/case.json"))
     case_ids: set[str] = set()
 
     for manifest_path in manifests:
         manifest = load_json(manifest_path)
+        gold_path = manifest_path.parent / manifest["gold"]
+        gold = load_json(gold_path)
         case_id = manifest["caseId"]
         assert case_id not in case_ids, f"Duplicate caseId: {case_id}"
         case_ids.add(case_id)
         assert manifest["partition"] in ALLOWED_PARTITIONS, f"Invalid partition for {case_id}"
         assert manifest["clinicalScope"] == "NSCLC", f"Unsupported scope for {case_id}"
+        assert manifest["syntheticFixture"] is True, f"Fixture is not declared synthetic: {case_id}"
+        assert manifest["clinicianAdjudication"]["status"] in {"pending", "adjudicated"}
 
         input_path = (manifest_path.parent / manifest["input"]).resolve()
         assert input_path.is_relative_to(ROOT), f"Input escapes repository: {case_id}"
         assert input_path.exists(), f"Missing input for {case_id}: {input_path}"
         bundle = load_json(input_path)
-        assert bundle.get("resourceType") == "Bundle", f"Input is not a Bundle: {case_id}"
-        assert is_explicitly_synthetic(bundle), f"Missing synthetic marker: {case_id}"
+        expected_valid = gold["expectedValidation"]["valid"]
+        if expected_valid:
+            assert bundle.get("resourceType") == "Bundle", f"Input is not a Bundle: {case_id}"
+            assert is_explicitly_synthetic(bundle), f"Missing synthetic marker: {case_id}"
 
         resources = [entry.get("resource", {}) for entry in bundle.get("entry", [])]
-        assert any(item.get("resourceType") == "Patient" for item in resources), (
-            f"Bundle has no Patient: {case_id}"
-        )
-
-        gold_path = manifest_path.parent / manifest["gold"]
-        gold = load_json(gold_path)
+        if expected_valid:
+            assert any(item.get("resourceType") == "Patient" for item in resources), (
+                f"Bundle has no Patient: {case_id}"
+            )
         assert gold["caseId"] == case_id, f"Gold caseId mismatch: {case_id}"
+        assert isinstance(gold["expectedFields"], dict), f"Missing field gold: {case_id}"
+        assert isinstance(gold["expectedBiomarkers"], list), f"Missing biomarker gold: {case_id}"
+        assert isinstance(gold["expectedProvenance"], dict), f"Missing provenance gold: {case_id}"
 
-    return len(manifests)
+    return case_ids
 
 
 def main() -> None:
     json_count = validate_json_files()
     contract_count = validate_contracts()
-    case_count = validate_eval_cases()
+    case_ids = validate_eval_cases()
+    case_count = len(case_ids)
+    suite = load_json(ROOT / "evals" / "suite-manifest.json")
+    assert suite["caseCount"] == case_count, "Suite manifest case count does not match case files"
+    suite_case_ids = {item["caseId"] for item in suite["cases"]}
+    assert suite_case_ids == case_ids, "Suite manifest case IDs do not match case files"
     print(
         f"Repository validation passed: {json_count} JSON files, "
         f"{contract_count} schemas, {case_count} evaluation case(s)."

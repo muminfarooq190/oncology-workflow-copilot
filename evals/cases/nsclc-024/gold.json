@@ -1,0 +1,17 @@
+{
+  "caseId": "nsclc-024",
+  "expectedValidation": {
+    "valid": false,
+    "issueCodes": [
+      "invalid-resource-type"
+    ]
+  },
+  "expectedFields": {},
+  "expectedBiomarkers": [],
+  "expectedProvenance": {},
+  "expectedMissingInformation": [],
+  "expectedContradictions": [],
+  "goldRelevantEvidenceChunkIds": [],
+  "supportedDiscussionPointIds": [],
+  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+}

@@ -1,0 +1,171 @@
+{
+  "caseId": "nsclc-004",
+  "expectedValidation": {
+    "valid": true,
+    "issueCodes": []
+  },
+  "expectedFields": {
+    "patient.sex": "male",
+    "patient.ageYears": 68,
+    "disease.primarySite.value": "Right upper lobe of lung",
+    "disease.histology.value": "Poorly differentiated lung adenocarcinoma",
+    "disease.stage.system": "AJCC 8th edition",
+    "disease.stage.clinicalT": "cT2a",
+    "disease.stage.clinicalN": "cN2",
+    "disease.stage.clinicalM": "cM1c",
+    "disease.stage.group": "IVB",
+    "disease.performanceStatus.scale": "ECOG",
+    "disease.performanceStatus.score": 1
+  },
+  "expectedBiomarkers": [
+    {
+      "name": "ALK",
+      "result": "Not detected",
+      "unit": null,
+      "status": "negative"
+    },
+    {
+      "name": "EGFR",
+      "result": "Not detected",
+      "unit": null,
+      "status": "negative"
+    },
+    {
+      "name": "KRAS",
+      "result": "KRAS G12C detected",
+      "unit": null,
+      "status": "positive"
+    },
+    {
+      "name": "PD-L1 TPS",
+      "result": 60,
+      "unit": "%",
+      "status": "positive"
+    },
+    {
+      "name": "ROS1",
+      "result": "Not detected",
+      "unit": null,
+      "status": "negative"
+    }
+  ],
+  "expectedProvenance": {
+    "patient.sex": [
+      {
+        "resourceType": "Patient",
+        "resourceId": "patient-nsclc-004",
+        "jsonPath": "$.entry[0].resource.gender"
+      }
+    ],
+    "patient.ageYears": [
+      {
+        "resourceType": "Patient",
+        "resourceId": "patient-nsclc-004",
+        "jsonPath": "$.entry[0].resource.birthDate"
+      }
+    ],
+    "disease.primarySite.value": [
+      {
+        "resourceType": "Condition",
+        "resourceId": "condition-nsclc-004",
+        "jsonPath": "$.entry[1].resource.bodySite[0]"
+      }
+    ],
+    "disease.histology.value": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-histology-004",
+        "jsonPath": "$.entry[2].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.system": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-004",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.clinicalT": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-004",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.clinicalN": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-004",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.clinicalM": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-004",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.group": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-004",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.performanceStatus.scale": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-ecog-004",
+        "jsonPath": "$.entry[8].resource.valueInteger"
+      }
+    ],
+    "disease.performanceStatus.score": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-ecog-004",
+        "jsonPath": "$.entry[8].resource.valueInteger"
+      }
+    ],
+    "disease.biomarkers.EGFR": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-egfr-004",
+        "jsonPath": "$.entry[4].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.biomarkers.ALK": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-alk-004",
+        "jsonPath": "$.entry[5].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.biomarkers.ROS1": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-ros1-004",
+        "jsonPath": "$.entry[6].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.biomarkers.PD-L1 TPS": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-pdl1-004",
+        "jsonPath": "$.entry[7].resource.valueQuantity"
+      }
+    ],
+    "disease.biomarkers.KRAS": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-kras-004",
+        "jsonPath": "$.entry[12].resource.valueCodeableConcept"
+      }
+    ]
+  },
+  "expectedMissingInformation": [],
+  "expectedContradictions": [],
+  "goldRelevantEvidenceChunkIds": [],
+  "supportedDiscussionPointIds": [],
+  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+}

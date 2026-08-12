@@ -1,0 +1,20 @@
+{
+  "caseId": "nsclc-008",
+  "title": "Female never-smoker with EGFR-mutated adenocarcinoma",
+  "partition": "development",
+  "category": "typical_complete",
+  "clinicalScope": "NSCLC",
+  "syntheticFixture": true,
+  "input": "../../../data/synthetic-fhir/nsclc-008.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": false,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary"
+  ]
+}

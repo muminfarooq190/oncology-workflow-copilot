@@ -21,12 +21,22 @@
     "patient": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["synthetic", "sourcePatientId", "sex", "ageYears"],
+      "required": ["synthetic", "sourcePatientId", "sex", "ageYears", "provenance"],
       "properties": {
         "synthetic": { "const": true },
         "sourcePatientId": { "type": "string", "minLength": 1 },
         "sex": { "enum": ["female", "male", "other", "unknown"] },
-        "ageYears": { "type": "integer", "minimum": 18, "maximum": 120 }
+        "ageYears": { "type": "integer", "minimum": 18, "maximum": 120 },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sourcePatientId", "sex", "ageYears"],
+          "properties": {
+            "sourcePatientId": { "$ref": "#/$defs/provenanceList" },
+            "sex": { "$ref": "#/$defs/provenanceList" },
+            "ageYears": { "$ref": "#/$defs/provenanceList" }
+          }
+        }
       }
     },
     "disease": {
@@ -146,4 +156,3 @@
     }
   }
 }
-

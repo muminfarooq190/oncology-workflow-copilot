@@ -1,7 +1,9 @@
 using System.Text.Json;
+using OncologyCopilot.FhirIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddProblemDetails();
+builder.Services.AddSingleton<FhirBundleProcessor>();
 
 var app = builder.Build();
 app.UseExceptionHandler();
@@ -10,86 +12,26 @@ app.MapGet("/health", () => Results.Ok(new
 {
     status = "ok",
     service = "fhir-integration",
-    version = "0.1.0"
+    version = "0.2.0",
+    fhirRelease = "R4"
 }));
 
-app.MapPost("/v1/fhir/validate", (JsonElement payload) =>
+app.MapPost("/v1/fhir/validate", (JsonElement bundle, FhirBundleProcessor processor) =>
 {
-    if (!payload.TryGetProperty("resourceType", out var resourceType) ||
-        resourceType.GetString() != "Bundle")
-    {
-        return Results.ValidationProblem(new Dictionary<string, string[]>
-        {
-            ["resourceType"] = ["FHIR input must have resourceType Bundle."]
-        });
-    }
+    var result = processor.Validate(bundle);
+    return result.IsValid
+        ? Results.Ok(result)
+        : Results.Json(result, statusCode: StatusCodes.Status422UnprocessableEntity);
+});
 
-    if (!IsExplicitlySynthetic(payload))
-    {
-        return Results.ValidationProblem(new Dictionary<string, string[]>
-        {
-            ["meta.tag"] = ["Only bundles explicitly tagged as synthetic are accepted."]
-        });
-    }
-
-    var resourceCounts = CountResourceTypes(payload);
-    return Results.Ok(new
-    {
-        valid = true,
-        profile = "FHIR R4 foundation envelope",
-        canonicalContractVersion = "1.0.0",
-        resourceCounts,
-        limitations = new[]
-        {
-            "FHIR profile validation and canonical mapping are implemented in Week 6."
-        }
-    });
+app.MapPost("/v1/fhir/normalize", (JsonElement bundle, FhirBundleProcessor processor) =>
+{
+    var result = processor.Process(bundle);
+    return result.Validation.IsValid
+        ? Results.Ok(result)
+        : Results.Json(result, statusCode: StatusCodes.Status422UnprocessableEntity);
 });
 
 app.Run();
-
-static bool IsExplicitlySynthetic(JsonElement bundle)
-{
-    if (!bundle.TryGetProperty("meta", out var meta) ||
-        !meta.TryGetProperty("tag", out var tags) ||
-        tags.ValueKind != JsonValueKind.Array)
-    {
-        return false;
-    }
-
-    return tags.EnumerateArray().Any(tag =>
-        tag.TryGetProperty("system", out var system) &&
-        system.GetString() == "https://oncology-copilot.dev/tags" &&
-        tag.TryGetProperty("code", out var code) &&
-        code.GetString() == "synthetic");
-}
-
-static Dictionary<string, int> CountResourceTypes(JsonElement bundle)
-{
-    var counts = new Dictionary<string, int>(StringComparer.Ordinal);
-    if (!bundle.TryGetProperty("entry", out var entries) || entries.ValueKind != JsonValueKind.Array)
-    {
-        return counts;
-    }
-
-    foreach (var entry in entries.EnumerateArray())
-    {
-        if (!entry.TryGetProperty("resource", out var resource) ||
-            !resource.TryGetProperty("resourceType", out var resourceType))
-        {
-            continue;
-        }
-
-        var name = resourceType.GetString();
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            continue;
-        }
-
-        counts[name] = counts.GetValueOrDefault(name) + 1;
-    }
-
-    return counts;
-}
 
 public partial class Program { }
