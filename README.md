@@ -70,9 +70,8 @@ The implementation is deliberately staged. See [the execution roadmap](docs/ROAD
 
 ## Current status
 
-**Week 5 — foundation:** product boundary, architecture, contracts, threat model, local stack, CI, and the first golden synthetic case.
+**Week 6 — FHIR normalization:** strict Firely R4 parsing and structural validation, self-contained reference checks, canonical NSCLC mapping with field-level provenance, deterministic completeness/contradiction rules, a reproducible 25-case synthetic suite, and extraction scoring.
 
 ## Contribution rules
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Never add real patient data, credentials, paid guideline text, or screenshots containing protected information.
-

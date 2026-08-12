@@ -37,7 +37,7 @@ jobs:
           cache: pip
           cache-dependency-path: services/orchestrator/pyproject.toml
       - run: python -m pip install -e "./services/orchestrator[dev]"
-      - run: python -m ruff check services/orchestrator
+      - run: python -m ruff check services/orchestrator evals scripts
       - run: python -m pytest services/orchestrator/tests
 
   web:
@@ -68,6 +68,6 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
-      - run: dotnet restore
-      - run: dotnet build --configuration Release --no-restore
-
+      - run: dotnet restore tests/OncologyCopilot.FhirIntegration.Tests.csproj
+      - run: dotnet build tests/OncologyCopilot.FhirIntegration.Tests.csproj --configuration Release --no-restore
+      - run: dotnet test tests/OncologyCopilot.FhirIntegration.Tests.csproj --configuration Release --no-build --no-restore

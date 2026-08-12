@@ -1,0 +1,20 @@
+{
+  "caseId": "nsclc-002",
+  "title": "Complete metastatic ALK-rearranged adenocarcinoma",
+  "partition": "development",
+  "category": "typical_complete",
+  "clinicalScope": "NSCLC",
+  "syntheticFixture": true,
+  "input": "../../../data/synthetic-fhir/nsclc-002.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": false,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary"
+  ]
+}

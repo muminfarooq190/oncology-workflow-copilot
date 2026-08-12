@@ -1,0 +1,20 @@
+{
+  "caseId": "nsclc-020",
+  "title": "Rare MET exon 14 skipping alteration",
+  "partition": "development",
+  "category": "rare_or_ambiguous",
+  "clinicalScope": "NSCLC",
+  "syntheticFixture": true,
+  "input": "../../../data/synthetic-fhir/nsclc-020.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": false,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary"
+  ]
+}

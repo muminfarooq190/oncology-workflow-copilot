@@ -1,0 +1,20 @@
+{
+  "caseId": "nsclc-024",
+  "title": "Invalid top-level FHIR resource type",
+  "partition": "development",
+  "category": "invalid_fhir",
+  "clinicalScope": "NSCLC",
+  "syntheticFixture": true,
+  "input": "../../../data/synthetic-fhir/nsclc-024.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": true,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary"
+  ]
+}
