@@ -154,7 +154,11 @@
   "expectedContradictions": [
     "disease.histology.value"
   ],
-  "goldRelevantEvidenceChunkIds": [],
+  "evidenceCorpusVersion": "nsclc-v1",
+  "retrievalQuery": "resolve contradictory NSCLC histology assertions",
+  "goldRelevantEvidenceChunkIds": [
+    "nci-nsclc-overview-001"
+  ],
   "supportedDiscussionPointIds": [],
-  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+  "notes": "Week 8 engineering gold generated deterministically. Clinical adjudication is required before promotion beyond the development partition."
 }

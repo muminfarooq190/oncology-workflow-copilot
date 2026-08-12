@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "oncology-copilot-orchestrator"
-version = "0.3.0"
+version = "0.4.0"
 description = "Evaluation-first workflow orchestration for the Oncology Workflow Copilot"
 requires-python = ">=3.12"
 dependencies = [
@@ -12,6 +12,7 @@ dependencies = [
   "asyncpg>=0.30,<1.0",
   "fastapi>=0.115,<1.0",
   "httpx>=0.28,<1.0",
+  "pgvector>=0.5,<0.6",
   "pydantic-settings>=2.6,<3.0",
   "redis>=6.1,<7.0",
   "sqlalchemy>=2.0,<2.1",

@@ -154,7 +154,11 @@
     "staging.brainImaging"
   ],
   "expectedContradictions": [],
-  "goldRelevantEvidenceChunkIds": [],
+  "evidenceCorpusVersion": "nsclc-v1",
+  "retrievalQuery": "brain imaging for metastatic NSCLC staging",
+  "goldRelevantEvidenceChunkIds": [
+    "nci-nsclc-staging-001"
+  ],
   "supportedDiscussionPointIds": [],
-  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+  "notes": "Week 8 engineering gold generated deterministically. Clinical adjudication is required before promotion beyond the development partition."
 }

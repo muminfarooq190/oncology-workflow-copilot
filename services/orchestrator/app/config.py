@@ -7,10 +7,12 @@ class Settings(BaseSettings):
     app_name: str = "Oncology Workflow Copilot Orchestrator"
     app_env: str = "development"
     log_level: str = "INFO"
-    database_url: str = "postgresql+asyncpg://oncology:oncology@localhost:5432/oncology"
+    database_url: str = "postgresql+asyncpg://localhost:5432/oncology"
     redis_url: str = "redis://localhost:6379/0"
     fhir_integration_url: str = "http://localhost:8081"
     evidence_corpus_version: str = "nsclc-v1"
+    evidence_candidate_limit: int = 50
+    evidence_rrf_k: int = 60
     tenant_id: str = "portfolio"
     workflow_stream: str = "oncology:workflows"
     workflow_consumer_group: str = "orchestrator-workers"

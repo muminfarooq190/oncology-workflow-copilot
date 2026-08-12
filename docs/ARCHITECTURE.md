@@ -86,7 +86,11 @@ Contract changes require:
 
 ## Evidence retrieval
 
-The corpus is ingested offline. Each chunk records source, publication date, locator, content hash, ingestion timestamp, licensing status, clinical tags, and corpus version. Retrieval combines lexical and vector scores plus metadata filters. Evaluation uses a frozen corpus snapshot and clinician-adjudicated relevant chunk IDs.
+The corpus is frozen before ingestion. Each chunk records source, URL, publication date, locator, content hash, ingestion timestamp, licensing status, clinical tags, tumor type, and corpus version. The database rejects reuse of a corpus version with a different manifest or corpus hash.
+
+PostgreSQL produces two independent candidate lists: English full-text search over weighted source titles and content, and pgvector cosine distance over a version-bound embedding. Reciprocal-rank fusion combines their ranks with `k=60`; the API returns both component ranks, the fusion score, source URL, locator, and content hash for clinician inspection.
+
+`clinical-hash-embedding-v1` is an offline deterministic engineering baseline. It makes CI and the reference evaluation reproducible at zero model cost, but it is not presented as a production semantic model or clinically validated embedding. Replacing it requires a new provider identifier, a newly frozen corpus version, and a comparison report.
 
 ## Deployment evolution
 

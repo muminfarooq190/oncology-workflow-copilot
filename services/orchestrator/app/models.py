@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 from uuid import UUID
 
@@ -77,3 +77,37 @@ class HealthResponse(BaseModel):
     service: str
     version: str
     dependencies: DependencyHealth | None = None
+
+
+class EvidenceSearchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    query: str = Field(min_length=3, max_length=1_000)
+    top_k: int = Field(default=5, ge=1, le=20, alias="topK")
+    corpus_version: str | None = Field(default=None, alias="corpusVersion")
+    tumor_type: str = Field(default="NSCLC", min_length=2, max_length=64, alias="tumorType")
+
+
+class EvidenceSearchHit(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    chunk_id: str = Field(alias="chunkId")
+    source_title: str = Field(alias="sourceTitle")
+    source_url: str = Field(alias="sourceUrl")
+    publication_date: date = Field(alias="publicationDate")
+    locator: str
+    content: str
+    content_hash: str = Field(alias="contentHash")
+    tags: list[str]
+    lexical_rank: int | None = Field(alias="lexicalRank")
+    vector_rank: int | None = Field(alias="vectorRank")
+    rrf_score: float = Field(alias="rrfScore")
+
+
+class EvidenceSearchResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    query: str
+    corpus_version: str = Field(alias="corpusVersion")
+    embedding_provider: str = Field(alias="embeddingProvider")
+    results: list[EvidenceSearchHit]

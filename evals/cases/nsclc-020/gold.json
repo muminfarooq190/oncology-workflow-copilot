@@ -165,7 +165,11 @@
   },
   "expectedMissingInformation": [],
   "expectedContradictions": [],
-  "goldRelevantEvidenceChunkIds": [],
+  "evidenceCorpusVersion": "nsclc-v1",
+  "retrievalQuery": "MET exon 14 skipping metastatic NSCLC tepotinib",
+  "goldRelevantEvidenceChunkIds": [
+    "fda-tepotinib-met-001"
+  ],
   "supportedDiscussionPointIds": [],
-  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+  "notes": "Week 8 engineering gold generated deterministically. Clinical adjudication is required before promotion beyond the development partition."
 }

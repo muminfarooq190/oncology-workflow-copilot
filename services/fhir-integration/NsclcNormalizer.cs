@@ -359,13 +359,14 @@ public static partial class NsclcNormalizer
     private static bool IsBiomarker(Observation observation)
     {
         var text = observation.Code.Text ?? observation.Code.Coding.FirstOrDefault()?.Display;
-        return text is not null && new[] { "EGFR", "ALK", "ROS1", "PD-L1", "KRAS", "BRAF", "MET", "RET", "NTRK" }
+        return text is not null && new[] { "EGFR", "ALK", "ROS1", "PD-L1", "KRAS", "BRAF", "MET", "RET", "NTRK", "HER2", "ERBB2" }
             .Any(marker => text.Contains(marker, StringComparison.OrdinalIgnoreCase));
     }
 
     private static string NormalizeBiomarkerName(string name)
     {
         if (Contains(name, "PD-L1")) return "PD-L1 TPS";
+        if (Contains(name, "HER2") || Contains(name, "ERBB2")) return "HER2";
         return new[] { "EGFR", "ALK", "ROS1", "KRAS", "BRAF", "MET", "RET", "NTRK" }
             .FirstOrDefault(marker => name.Contains(marker, StringComparison.OrdinalIgnoreCase)) ?? name;
     }

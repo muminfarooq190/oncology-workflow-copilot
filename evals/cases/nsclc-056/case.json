@@ -1,0 +1,20 @@
+{
+  "caseId": "nsclc-056",
+  "title": "Rare HER2 activating mutation",
+  "partition": "development",
+  "category": "rare_or_ambiguous",
+  "clinicalScope": "NSCLC",
+  "syntheticFixture": true,
+  "input": "../../../data/synthetic-fhir/nsclc-056.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": false,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary"
+  ]
+}

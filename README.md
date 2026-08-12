@@ -41,7 +41,7 @@ flowchart TD
 | `services/fhir-integration` | .NET 8 FHIR validation and canonicalization boundary |
 | `contracts` | Versioned JSON contracts shared across services |
 | `data/synthetic-fhir` | Synthetic FHIR R4 inputs only |
-| `evidence` | Versioned evidence manifests; licensed source text is not committed by default |
+| `evidence` | Frozen, content-addressed public-source evidence corpus and ingestion manifest |
 | `evals` | Cases, gold labels, scorers, and generated reports |
 | `infra` | Local Docker, Terraform, and Kubernetes assets as the project matures |
 | `docs` | Product, architecture, safety, evaluation, and operating decisions |
@@ -52,6 +52,7 @@ Prerequisites: Node.js 22+, Python 3.12+, .NET 8 SDK, Docker with Compose.
 
 ```bash
 cp .env.example .env
+# Set POSTGRES_PASSWORD and KEYCLOAK_ADMIN_PASSWORD in .env before continuing.
 make install
 make test
 docker compose up --build
@@ -70,7 +71,7 @@ The implementation is deliberately staged. See [the execution roadmap](docs/ROAD
 
 ## Current status
 
-**Week 7 — durable orchestration:** PostgreSQL-backed state and idempotent intake, a transactional outbox, Redis Streams workers with recovery and bounded retries, dead-letter requeue, database-enforced append-only audit, dependency readiness, and real-service integration tests. The Week 6 .NET FHIR normalizer remains the sole interpreter of raw FHIR.
+**Week 8 — evidence retrieval:** a frozen 19-chunk NSCLC corpus of original paraphrases linked to NCI/FDA sources, hash-verified idempotent ingestion, PostgreSQL full-text search plus pgvector cosine retrieval, reciprocal-rank fusion, reviewable source metadata, and a 60-case development suite. The checked-in reference report reaches recall@5 of 1.00 across 55 retrieval-eligible cases; all labels still require clinical adjudication.
 
 ## Contribution rules
 

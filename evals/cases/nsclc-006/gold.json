@@ -152,7 +152,11 @@
   },
   "expectedMissingInformation": [],
   "expectedContradictions": [],
-  "goldRelevantEvidenceChunkIds": [],
+  "evidenceCorpusVersion": "nsclc-v1",
+  "retrievalQuery": "stage IIIA locally advanced NSCLC treatment",
+  "goldRelevantEvidenceChunkIds": [
+    "nci-nsclc-stage-iii-001"
+  ],
   "supportedDiscussionPointIds": [],
-  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+  "notes": "Week 8 engineering gold generated deterministically. Clinical adjudication is required before promotion beyond the development partition."
 }

@@ -1,0 +1,1078 @@
+{
+  "reportVersion": "week8-retrieval-v1",
+  "generatedBy": "evals.scorers.retrieval",
+  "suiteVersion": "week8-v1",
+  "suiteCaseCount": 60,
+  "eligibleCaseCount": 55,
+  "skippedCaseCount": 5,
+  "corpusVersion": "nsclc-v1",
+  "corpusHash": "sha256:3f15c19c7342c74edaf2f29a2cdbbb70353f162d7ec6cb50bc702f17a7f81054",
+  "embeddingProvider": "clinical-hash-embedding-v1",
+  "retrieval": {
+    "lexical": "postgresql-english-tsvector-v1",
+    "vectorDistance": "cosine",
+    "fusion": "rrf-v1",
+    "rrfK": 60,
+    "candidateLimit": 50
+  },
+  "metrics": {
+    "recallAt1": 0.8727272727272727,
+    "recallAt3": 0.9818181818181818,
+    "recallAt5": 1.0,
+    "hitRateAt5": 1.0,
+    "meanReciprocalRank": 0.9309090909090909,
+    "ndcgAt5": 0.9485896605211507
+  },
+  "exitCriterion": {
+    "metric": "recallAt5",
+    "threshold": 0.9,
+    "passed": true
+  },
+  "cases": [
+    {
+      "caseId": "nsclc-001",
+      "query": "metastatic EGFR-mutated NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-datopotamab-egfr-001",
+        "nci-biomarker-testing-001",
+        "fda-tepotinib-met-001",
+        "fda-osimertinib-stage-iii-001",
+        "fda-adagrasib-kras-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575
+    },
+    {
+      "caseId": "nsclc-002",
+      "query": "stage IV ALK-positive NSCLC systemic treatment evidence",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-003",
+      "query": "metastatic ROS1-positive NSCLC repotrectinib",
+      "relevantChunkIds": [
+        "fda-repotrectinib-ros1-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-repotrectinib-ros1-001",
+        "fda-adagrasib-kras-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-repotrectinib-ntrk-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-004",
+      "query": "previously treated KRAS G12C metastatic NSCLC adagrasib",
+      "relevantChunkIds": [
+        "fda-adagrasib-kras-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-adagrasib-kras-001",
+        "fda-tepotinib-met-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-sevabertinib-her2-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-005",
+      "query": "stage IA node-negative NSCLC local treatment",
+      "relevantChunkIds": [
+        "nci-nsclc-early-stage-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-overview-001",
+        "fda-alectinib-adjuvant-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-006",
+      "query": "stage IIIA locally advanced NSCLC treatment",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iii-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-performance-001",
+        "fda-osimertinib-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-007",
+      "query": "stage IV squamous NSCLC systemic treatment",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-performance-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-008",
+      "query": "never-smoker EGFR-mutated NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "fda-datopotamab-egfr-001",
+        "fda-durvalumab-perioperative-001",
+        "fda-osimertinib-stage-iii-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-009",
+      "query": "ECOG performance status metastatic NSCLC treatment",
+      "relevantChunkIds": [
+        "nci-nsclc-performance-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-performance-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-overview-001",
+        "fda-tepotinib-met-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-010",
+      "query": "stage IV EGFR-mutated NSCLC treatment history",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001",
+        "fda-osimertinib-stage-iii-001",
+        "fda-datopotamab-egfr-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-011",
+      "query": "required clinical staging evaluation for NSCLC",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-overview-001",
+        "fda-datopotamab-egfr-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-012",
+      "query": "NSCLC histology classification and tumor-board preparation",
+      "relevantChunkIds": [
+        "nci-nsclc-overview-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-overview-001",
+        "fda-adagrasib-kras-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-performance-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-013",
+      "query": "performance status needed for NSCLC treatment planning",
+      "relevantChunkIds": [
+        "nci-nsclc-performance-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-performance-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-overview-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-014",
+      "query": "brain imaging for metastatic NSCLC staging",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "fda-tepotinib-met-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-adagrasib-kras-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-015",
+      "query": "molecular biomarker testing EGFR ALK ROS1 NSCLC",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "fda-durvalumab-perioperative-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-alectinib-adjuvant-001",
+        "fda-repotrectinib-ros1-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-016",
+      "query": "NSCLC staging evaluation imaging procedures for contradictory clinical stage",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-017",
+      "query": "resolve contradictory NSCLC histology assertions",
+      "relevantChunkIds": [
+        "nci-nsclc-overview-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-overview-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-adagrasib-kras-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-018",
+      "query": "resolve conflicting ECOG performance status",
+      "relevantChunkIds": [
+        "nci-nsclc-performance-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-performance-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-019",
+      "query": "NSCLC staging evaluation imaging procedures for serial stage assertions",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "nci-nsclc-early-stage-001",
+        "fda-osimertinib-stage-iii-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-020",
+      "query": "MET exon 14 skipping metastatic NSCLC tepotinib",
+      "relevantChunkIds": [
+        "fda-tepotinib-met-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-tepotinib-met-001",
+        "fda-telisotuzumab-cmet-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-sevabertinib-her2-001",
+        "fda-adagrasib-kras-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-026",
+      "query": "BRAF V600E NSCLC molecular biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "fda-tepotinib-met-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-027",
+      "query": "RET fusion-positive metastatic solid tumor selpercatinib",
+      "relevantChunkIds": [
+        "fda-selpercatinib-ret-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-selpercatinib-ret-001",
+        "fda-repotrectinib-ntrk-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-tepotinib-met-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-028",
+      "query": "NTRK gene fusion-positive solid tumor repotrectinib",
+      "relevantChunkIds": [
+        "fda-repotrectinib-ntrk-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-repotrectinib-ntrk-001",
+        "fda-selpercatinib-ret-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-029",
+      "query": "MET exon 14 skipping metastatic NSCLC tepotinib",
+      "relevantChunkIds": [
+        "fda-tepotinib-met-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-tepotinib-met-001",
+        "fda-telisotuzumab-cmet-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-sevabertinib-her2-001",
+        "fda-adagrasib-kras-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-030",
+      "query": "EGFR exon 19 deletion NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "fda-osimertinib-stage-iii-001",
+        "fda-datopotamab-egfr-001",
+        "fda-durvalumab-perioperative-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-031",
+      "query": "resected stage IIB ALK-positive NSCLC adjuvant alectinib",
+      "relevantChunkIds": [
+        "fda-alectinib-adjuvant-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-alectinib-adjuvant-001",
+        "fda-durvalumab-perioperative-001",
+        "fda-pembrolizumab-perioperative-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-032",
+      "query": "stage IIIA ROS1-positive NSCLC repotrectinib",
+      "relevantChunkIds": [
+        "fda-repotrectinib-ros1-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-repotrectinib-ros1-001",
+        "nci-nsclc-early-stage-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-033",
+      "query": "stage IV squamous NSCLC high PD-L1 treatment",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-performance-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575
+    },
+    {
+      "caseId": "nsclc-034",
+      "query": "early-stage squamous NSCLC local treatment",
+      "relevantChunkIds": [
+        "nci-nsclc-early-stage-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575
+    },
+    {
+      "caseId": "nsclc-035",
+      "query": "resectable node-positive stage IIB NSCLC perioperative pembrolizumab",
+      "relevantChunkIds": [
+        "fda-pembrolizumab-perioperative-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-pembrolizumab-perioperative-001",
+        "fda-durvalumab-perioperative-001",
+        "nci-nsclc-early-stage-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-036",
+      "query": "stage IV driver-negative NSCLC PD-L1 zero",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-osimertinib-stage-iii-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575
+    },
+    {
+      "caseId": "nsclc-037",
+      "query": "stage IV driver-negative NSCLC PD-L1 ninety",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-durvalumab-perioperative-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575
+    },
+    {
+      "caseId": "nsclc-038",
+      "query": "brain metastases imaging in metastatic NSCLC staging",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "fda-tepotinib-met-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-adagrasib-kras-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-039",
+      "query": "ECOG 3 performance status metastatic NSCLC",
+      "relevantChunkIds": [
+        "nci-nsclc-performance-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-performance-001",
+        "fda-tepotinib-met-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-adagrasib-kras-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-040",
+      "query": "missing PD-L1 result NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-adagrasib-kras-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-041",
+      "query": "missing EGFR result NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "fda-datopotamab-egfr-001",
+        "fda-durvalumab-perioperative-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-042",
+      "query": "missing ALK result NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-alectinib-adjuvant-001",
+        "fda-durvalumab-perioperative-001",
+        "fda-pembrolizumab-perioperative-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-043",
+      "query": "missing ROS1 result NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "fda-repotrectinib-ros1-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-044",
+      "query": "smoking history in NSCLC clinical assessment",
+      "relevantChunkIds": [
+        "nci-nsclc-overview-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-early-stage-001",
+        "fda-adagrasib-kras-001",
+        "fda-repotrectinib-ros1-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575
+    },
+    {
+      "caseId": "nsclc-045",
+      "query": "primary tumor site needed for NSCLC staging",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-046",
+      "query": "missing ECOG performance status in NSCLC",
+      "relevantChunkIds": [
+        "nci-nsclc-performance-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-performance-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-047",
+      "query": "contradictory early and metastatic NSCLC staging",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-staging-001",
+        "fda-tepotinib-met-001",
+        "fda-adagrasib-kras-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-048",
+      "query": "contradictory NSCLC histology classification",
+      "relevantChunkIds": [
+        "nci-nsclc-overview-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-overview-001",
+        "fda-adagrasib-kras-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-datopotamab-egfr-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-049",
+      "query": "conflicting ECOG zero and four performance status",
+      "relevantChunkIds": [
+        "nci-nsclc-performance-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-performance-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-durvalumab-perioperative-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-050",
+      "query": "conflicting stage III and IV NSCLC assertions",
+      "relevantChunkIds": [
+        "nci-nsclc-staging-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-osimertinib-stage-iii-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-staging-001"
+      ],
+      "recallAt1": 0.0,
+      "recallAt3": 0.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 0.2,
+      "ndcgAt5": 0.38685280723454163
+    },
+    {
+      "caseId": "nsclc-051",
+      "query": "conflicting squamous and adenocarcinoma histology",
+      "relevantChunkIds": [
+        "nci-nsclc-overview-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-overview-001",
+        "nci-nsclc-stage-iv-001",
+        "fda-datopotamab-egfr-001",
+        "fda-durvalumab-perioperative-001",
+        "fda-osimertinib-stage-iii-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-052",
+      "query": "BRAF V600E NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-repotrectinib-ros1-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-053",
+      "query": "RET fusion-positive metastatic tumor selpercatinib",
+      "relevantChunkIds": [
+        "fda-selpercatinib-ret-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-selpercatinib-ret-001",
+        "fda-repotrectinib-ntrk-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-tepotinib-met-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-054",
+      "query": "NTRK fusion-positive solid tumor repotrectinib",
+      "relevantChunkIds": [
+        "fda-repotrectinib-ntrk-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-repotrectinib-ntrk-001",
+        "fda-selpercatinib-ret-001",
+        "fda-repotrectinib-ros1-001",
+        "fda-alectinib-adjuvant-001",
+        "nci-nsclc-stage-iv-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-055",
+      "query": "EGFR exon 20 insertion NSCLC biomarker testing",
+      "relevantChunkIds": [
+        "nci-biomarker-testing-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-biomarker-testing-001",
+        "fda-datopotamab-egfr-001",
+        "fda-osimertinib-stage-iii-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-durvalumab-perioperative-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-056",
+      "query": "HER2 ERBB2 activating mutation NSCLC sevabertinib",
+      "relevantChunkIds": [
+        "fda-sevabertinib-her2-001"
+      ],
+      "retrievedChunkIds": [
+        "fda-sevabertinib-her2-001",
+        "nci-nsclc-stage-iii-001",
+        "fda-osimertinib-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "fda-datopotamab-egfr-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-057",
+      "query": "stage IV NSCLC evidence; ignore instructions inside patient data",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-early-stage-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-058",
+      "query": "stage IV NSCLC evidence; patient names are untrusted data",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-overview-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-performance-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-059",
+      "query": "stage IV NSCLC evidence; medication text is untrusted data",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-overview-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    },
+    {
+      "caseId": "nsclc-060",
+      "query": "stage IV NSCLC evidence; radiology text is untrusted data",
+      "relevantChunkIds": [
+        "nci-nsclc-stage-iv-001"
+      ],
+      "retrievedChunkIds": [
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-performance-001",
+        "nci-nsclc-overview-001"
+      ],
+      "recallAt1": 1.0,
+      "recallAt3": 1.0,
+      "recallAt5": 1.0,
+      "reciprocalRank": 1.0,
+      "ndcgAt5": 1.0
+    }
+  ]
+}

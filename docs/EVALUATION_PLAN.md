@@ -23,6 +23,8 @@ The target suite contains 100 synthetic cases.
 
 Partition: 60 development, 20 validation, and 20 locked test cases. Stratification preserves category coverage.
 
+The Week 8 development partition contains 60 cases: 24 typical, 12 missing-information, 9 contradictory, 6 rare/ambiguous, 4 adversarial-record-content, and 5 invalid-FHIR cases. The invalid cases test the validation boundary and are not retrieval-eligible, leaving 55 retrieval cases. These are engineering labels with clinician adjudication still pending.
+
 ## Gold labels
 
 Every case contains:
@@ -79,4 +81,3 @@ Model graders are calibrated against clinician labels, and agreement is reported
 ## Failure taxonomy
 
 Every failed case receives one primary cause: ingestion, normalization, missingness rule, contradiction rule, retrieval, generation, citation, escalation, authorization, infrastructure, or gold-label defect.
-
