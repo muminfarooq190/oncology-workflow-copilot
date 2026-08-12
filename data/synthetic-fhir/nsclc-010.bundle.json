@@ -14,7 +14,7 @@
   "timestamp": "2026-04-20T09:00:00Z",
   "entry": [
     {
-      "fullUrl": "urn:uuid:patient-nsclc-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Patient/patient-nsclc-010",
       "resource": {
         "resourceType": "Patient",
         "id": "patient-nsclc-010",
@@ -48,7 +48,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:condition-nsclc-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Condition/condition-nsclc-010",
       "resource": {
         "resourceType": "Condition",
         "id": "condition-nsclc-010",
@@ -97,7 +97,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-histology-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-histology-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-histology-010",
@@ -139,7 +139,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-stage-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-stage-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-stage-010",
@@ -164,7 +164,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-egfr-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-egfr-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-egfr-010",
@@ -193,7 +193,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-alk-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-alk-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-alk-010",
@@ -222,7 +222,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-ros1-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-ros1-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-ros1-010",
@@ -251,7 +251,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-pdl1-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-pdl1-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-pdl1-010",
@@ -275,7 +275,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-ecog-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-ecog-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-ecog-010",
@@ -298,7 +298,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-smoking-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-smoking-010",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-smoking-010",
@@ -314,7 +314,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:diagnosticreport-ct-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/DiagnosticReport/diagnosticreport-ct-010",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "diagnosticreport-ct-010",
@@ -340,7 +340,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:diagnosticreport-mri-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/DiagnosticReport/diagnosticreport-mri-010",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "diagnosticreport-mri-010",
@@ -366,7 +366,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:medicationstatement-osimertinib-010",
+      "fullUrl": "https://oncology-copilot.dev/fhir/MedicationStatement/medicationstatement-osimertinib-010",
       "resource": {
         "resourceType": "MedicationStatement",
         "id": "medicationstatement-osimertinib-010",

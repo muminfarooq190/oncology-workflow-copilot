@@ -91,7 +91,7 @@ public sealed class FhirBundleProcessorTests
         var stageEntry = entries.First(entry =>
             entry!["resource"]?["id"]?.GetValue<string>() == "observation-stage-001")!;
         var conflicting = stageEntry.DeepClone();
-        conflicting["fullUrl"] = "urn:uuid:observation-stage-conflict";
+        conflicting["fullUrl"] = "https://oncology-copilot.dev/fhir/Observation/observation-stage-conflict";
         conflicting["resource"]!["id"] = "observation-stage-conflict";
         conflicting["resource"]!["effectiveDateTime"] = "2026-04-03";
         conflicting["resource"]!["valueCodeableConcept"]!["text"] = "cT2a cN2 cM0, stage IIIA";

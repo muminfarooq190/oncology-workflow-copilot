@@ -8,7 +8,7 @@
   "timestamp": "2026-04-20T09:00:00Z",
   "entry": [
     {
-      "fullUrl": "urn:uuid:patient-nsclc-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Patient/patient-nsclc-023",
       "resource": {
         "resourceType": "Patient",
         "id": "patient-nsclc-023",
@@ -42,7 +42,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:condition-nsclc-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Condition/condition-nsclc-023",
       "resource": {
         "resourceType": "Condition",
         "id": "condition-nsclc-023",
@@ -91,7 +91,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-histology-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-histology-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-histology-023",
@@ -133,7 +133,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-stage-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-stage-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-stage-023",
@@ -158,7 +158,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-egfr-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-egfr-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-egfr-023",
@@ -187,7 +187,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-alk-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-alk-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-alk-023",
@@ -216,7 +216,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-ros1-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-ros1-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-ros1-023",
@@ -245,7 +245,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-pdl1-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-pdl1-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-pdl1-023",
@@ -269,7 +269,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-ecog-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-ecog-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-ecog-023",
@@ -292,7 +292,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:observation-smoking-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/Observation/observation-smoking-023",
       "resource": {
         "resourceType": "Observation",
         "id": "observation-smoking-023",
@@ -308,7 +308,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:diagnosticreport-ct-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/DiagnosticReport/diagnosticreport-ct-023",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "diagnosticreport-ct-023",
@@ -334,7 +334,7 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:diagnosticreport-mri-023",
+      "fullUrl": "https://oncology-copilot.dev/fhir/DiagnosticReport/diagnosticreport-mri-023",
       "resource": {
         "resourceType": "DiagnosticReport",
         "id": "diagnosticreport-mri-023",

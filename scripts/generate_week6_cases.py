@@ -169,8 +169,9 @@ def configure_case_identity(bundle: dict[str, Any], number: int) -> None:
         old_id = item.get("id", "")
         new_id = old_id.replace("001", suffix)
         item["id"] = new_id
-        if entry.get("fullUrl"):
-            entry["fullUrl"] = entry["fullUrl"].replace(old_id, new_id)
+        entry["fullUrl"] = (
+            f"https://oncology-copilot.dev/fhir/{item['resourceType']}/{new_id}"
+        )
         subject = item.get("subject")
         if subject and subject.get("reference") == f"Patient/{old_patient_id}":
             subject["reference"] = f"Patient/{new_patient_id}"
