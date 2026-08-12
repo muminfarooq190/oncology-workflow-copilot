@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using OncologyCopilot.FhirIntegration;
+using Xunit;
 
 namespace OncologyCopilot.FhirIntegration.Tests;
 
