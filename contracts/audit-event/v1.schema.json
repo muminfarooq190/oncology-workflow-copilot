@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oncology-copilot.dev/contracts/audit-event/v1.schema.json",
+  "title": "Audit Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "eventId",
+    "occurredAt",
+    "workflowId",
+    "tenantId",
+    "actor",
+    "action",
+    "traceId",
+    "inputHash",
+    "metadata"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "eventId": { "type": "string", "format": "uuid" },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "workflowId": { "type": "string", "format": "uuid" },
+    "tenantId": { "type": "string" },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject", "role"],
+      "properties": {
+        "subject": { "type": "string" },
+        "role": { "enum": ["coordinator", "clinician", "evaluator", "auditor", "administrator", "system"] }
+      }
+    },
+    "action": { "type": "string" },
+    "traceId": { "type": "string" },
+    "priorState": { "type": ["string", "null"] },
+    "nextState": { "type": ["string", "null"] },
+    "inputHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "outputHash": { "type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractVersion", "corpusVersion"],
+      "properties": {
+        "contractVersion": { "type": "string" },
+        "corpusVersion": { "type": "string" },
+        "modelSnapshot": { "type": ["string", "null"] },
+        "promptVersion": { "type": ["string", "null"] },
+        "reasonCode": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
+

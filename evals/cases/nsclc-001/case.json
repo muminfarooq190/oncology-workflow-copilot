@@ -1,0 +1,21 @@
+{
+  "caseId": "nsclc-001",
+  "title": "Complete metastatic EGFR-mutated lung adenocarcinoma",
+  "partition": "development",
+  "category": "typical_complete",
+  "clinicalScope": "NSCLC",
+  "input": "../../../data/synthetic-fhir/nsclc-001.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": false,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary",
+    "The patient has brain metastases"
+  ]
+}
+
