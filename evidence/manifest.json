@@ -1,0 +1,25 @@
+{
+  "corpusVersion": "nsclc-v1",
+  "status": "planned",
+  "clinicalScope": ["adult", "NSCLC"],
+  "allowedSourceClasses": [
+    "FDA prescribing information",
+    "NCI public clinical information",
+    "PubMed abstract and metadata",
+    "open-access peer-reviewed article"
+  ],
+  "requiredChunkMetadata": [
+    "chunkId",
+    "sourceTitle",
+    "sourceUrl",
+    "publicationDate",
+    "locator",
+    "contentHash",
+    "ingestedAt",
+    "licenseStatus",
+    "tumorType",
+    "corpusVersion"
+  ],
+  "sources": []
+}
+

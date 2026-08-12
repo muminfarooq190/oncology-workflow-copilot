@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oncology-copilot.dev/contracts/tumor-board-packet/v1.schema.json",
+  "title": "Tumor Board Packet v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "caseId",
+    "status",
+    "summary",
+    "timeline",
+    "missingInformation",
+    "contradictions",
+    "discussionPoints",
+    "escalation",
+    "generation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "caseId": { "type": "string" },
+    "status": { "enum": ["draft", "reviewed", "approved", "escalated"] },
+    "summary": { "type": "string", "minLength": 1 },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "event", "patientRecordSources"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "event": { "type": "string" },
+          "patientRecordSources": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "missingInformation": { "type": "array", "items": { "type": "string" } },
+    "contradictions": { "type": "array", "items": { "type": "string" } },
+    "discussionPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claimId", "text", "material", "citations", "supportStatus"],
+        "properties": {
+          "claimId": { "type": "string" },
+          "text": { "type": "string" },
+          "material": { "type": "boolean" },
+          "citations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["evidenceChunkId", "sourceTitle", "sourceUrl", "locator", "contentHash"],
+              "properties": {
+                "evidenceChunkId": { "type": "string" },
+                "sourceTitle": { "type": "string" },
+                "sourceUrl": { "type": "string", "format": "uri" },
+                "locator": { "type": "string" },
+                "contentHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+              }
+            }
+          },
+          "supportStatus": { "enum": ["supported", "partially_supported", "unsupported", "not_applicable"] }
+        }
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "reasons"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "reasons": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "modelSnapshot", "promptVersion", "corpusVersion", "generatedAt"],
+      "properties": {
+        "model": { "type": "string" },
+        "modelSnapshot": { "type": "string" },
+        "promptVersion": { "type": "string" },
+        "corpusVersion": { "type": "string" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "inputTokens": { "type": ["integer", "null"], "minimum": 0 },
+        "outputTokens": { "type": ["integer", "null"], "minimum": 0 },
+        "estimatedCostUsd": { "type": ["number", "null"], "minimum": 0 }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,26 @@
+name: Feature slice
+description: Propose a testable workflow capability
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: workflow-problem
+    attributes:
+      label: Workflow problem
+      description: What real coordinator or clinician task is blocked?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: State the deterministic tests and clinical evaluations that prove completion.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and escalation behavior
+    validations:
+      required: true
+

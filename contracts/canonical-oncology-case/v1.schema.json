@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oncology-copilot.dev/contracts/canonical-oncology-case/v1.schema.json",
+  "title": "Canonical Oncology Case v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "caseId",
+    "sourceBundleHash",
+    "patient",
+    "disease",
+    "clinicalTimeline",
+    "missingInformation",
+    "contradictions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "caseId": { "type": "string", "minLength": 1 },
+    "sourceBundleHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "patient": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["synthetic", "sourcePatientId", "sex", "ageYears"],
+      "properties": {
+        "synthetic": { "const": true },
+        "sourcePatientId": { "type": "string", "minLength": 1 },
+        "sex": { "enum": ["female", "male", "other", "unknown"] },
+        "ageYears": { "type": "integer", "minimum": 18, "maximum": 120 }
+      }
+    },
+    "disease": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primarySite", "histology", "stage", "biomarkers", "performanceStatus"],
+      "properties": {
+        "primarySite": { "$ref": "#/$defs/sourcedText" },
+        "histology": { "$ref": "#/$defs/sourcedText" },
+        "stage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["system", "group", "provenance"],
+          "properties": {
+            "system": { "type": ["string", "null"] },
+            "group": { "type": ["string", "null"] },
+            "clinicalT": { "type": ["string", "null"] },
+            "clinicalN": { "type": ["string", "null"] },
+            "clinicalM": { "type": ["string", "null"] },
+            "provenance": { "$ref": "#/$defs/provenanceList" }
+          }
+        },
+        "biomarkers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "result", "status", "provenance"],
+            "properties": {
+              "name": { "type": "string" },
+              "result": { "type": ["string", "number", "null"] },
+              "unit": { "type": ["string", "null"] },
+              "status": { "enum": ["positive", "negative", "indeterminate", "unknown"] },
+              "provenance": { "$ref": "#/$defs/provenanceList" }
+            }
+          }
+        },
+        "performanceStatus": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scale", "score", "provenance"],
+          "properties": {
+            "scale": { "enum": ["ECOG", "Karnofsky", "unknown"] },
+            "score": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+            "provenance": { "$ref": "#/$defs/provenanceList" }
+          }
+        }
+      }
+    },
+    "clinicalTimeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "kind", "summary", "provenance"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "kind": { "enum": ["diagnosis", "pathology", "imaging", "biomarker", "treatment", "response", "toxicity", "other"] },
+          "summary": { "type": "string", "minLength": 1 },
+          "provenance": { "$ref": "#/$defs/provenanceList" }
+        }
+      }
+    },
+    "missingInformation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "severity", "reason"],
+        "properties": {
+          "field": { "type": "string" },
+          "severity": { "enum": ["critical", "important", "informational"] },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "values", "severity", "provenance"],
+        "properties": {
+          "field": { "type": "string" },
+          "values": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+          "severity": { "enum": ["critical", "important", "informational"] },
+          "provenance": { "$ref": "#/$defs/provenanceList" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sourcedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "provenance"],
+      "properties": {
+        "value": { "type": ["string", "null"] },
+        "code": { "type": ["string", "null"] },
+        "system": { "type": ["string", "null"], "format": "uri" },
+        "provenance": { "$ref": "#/$defs/provenanceList" }
+      }
+    },
+    "provenanceList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/provenance" }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resourceType", "resourceId", "jsonPath"],
+      "properties": {
+        "resourceType": { "type": "string" },
+        "resourceId": { "type": "string" },
+        "jsonPath": { "type": "string" }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,36 @@
+{
+  "realm": "oncology-copilot",
+  "enabled": true,
+  "displayName": "Oncology Workflow Copilot",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "roles": {
+    "realm": [
+      { "name": "coordinator", "description": "Create synthetic cases and track workflows" },
+      { "name": "clinician", "description": "Review, correct, approve, or escalate packets" },
+      { "name": "evaluator", "description": "Adjudicate synthetic evaluation cases" },
+      { "name": "auditor", "description": "Read workflow audit evidence" },
+      { "name": "administrator", "description": "Manage local environment access" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "oncology-copilot-web",
+      "name": "Oncology Copilot Web",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": ["http://localhost:5173/*"],
+      "webOrigins": ["http://localhost:5173"]
+    },
+    {
+      "clientId": "oncology-copilot-api",
+      "name": "Oncology Copilot API",
+      "enabled": true,
+      "bearerOnly": true
+    }
+  ],
+  "defaultDefaultClientScopes": ["profile", "email", "roles", "web-origins"]
+}
+
