@@ -72,8 +72,46 @@ services:
     ports:
       - "8000:8000"
     depends_on:
+      orchestrator-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      fhir-integration:
+        condition: service_started
+
+  orchestrator-migrate:
+    build:
+      context: ./services/orchestrator
+    command: ["alembic", "upgrade", "head"]
+    env_file:
+      - .env
+    depends_on:
       postgres:
         condition: service_healthy
+
+  orchestrator-dispatcher:
+    build:
+      context: ./services/orchestrator
+    command: ["python", "-m", "app.outbox"]
+    env_file:
+      - .env
+    depends_on:
+      orchestrator-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  orchestrator-worker:
+    build:
+      context: ./services/orchestrator
+    command: ["python", "-m", "app.worker"]
+    env_file:
+      - .env
+    environment:
+      FHIR_INTEGRATION_URL: http://fhir-integration:8080
+    depends_on:
+      orchestrator-migrate:
+        condition: service_completed_successfully
       redis:
         condition: service_healthy
       fhir-integration:
@@ -90,4 +128,3 @@ services:
 volumes:
   postgres-data:
   redis-data:
-

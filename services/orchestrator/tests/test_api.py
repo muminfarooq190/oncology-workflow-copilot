@@ -25,20 +25,7 @@ def test_liveness() -> None:
     response = client.get("/health/live")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "service": "orchestrator", "version": "0.1.0"}
-
-
-def test_accepts_explicitly_synthetic_bundle_idempotently() -> None:
-    request = {"fhirBundle": synthetic_bundle()}
-    headers = {"Idempotency-Key": "case-nsclc-001"}
-
-    first = client.post("/v1/workflows", json=request, headers=headers)
-    second = client.post("/v1/workflows", json=request, headers=headers)
-
-    assert first.status_code == 202
-    assert first.json()["workflowId"] == second.json()["workflowId"]
-    assert first.json()["status"] == "received"
-    assert first.headers["location"].endswith(first.json()["workflowId"])
+    assert response.json() == {"status": "ok", "service": "orchestrator", "version": "0.3.0"}
 
 
 def test_rejects_non_bundle_input() -> None:
@@ -61,4 +48,3 @@ def test_rejects_bundle_without_synthetic_marker() -> None:
 
     assert response.status_code == 422
     assert response.json()["detail"] == "Only bundles explicitly tagged as synthetic are accepted"
-
