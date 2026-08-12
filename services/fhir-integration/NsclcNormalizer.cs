@@ -133,7 +133,7 @@ public static partial class NsclcNormalizer
         IReadOnlyDictionary<Resource, int> indices)
     {
         var name = NormalizeBiomarkerName(observation.Code.Text ?? observation.Code.Coding.FirstOrDefault()?.Display ?? "Unknown");
-        var result = observation.Value switch
+        object? result = observation.Value switch
         {
             Quantity quantity => quantity.Value,
             CodeableConcept concept => ConceptText(concept),
@@ -402,8 +402,8 @@ public static partial class NsclcNormalizer
 
     private static DateTimeOffset? DateTimeOffsetFrom(DataType? value) => value switch
     {
-        FhirDateTime date => date.ToDateTimeOffset(),
-        Period period when period.StartElement is not null => period.StartElement.ToDateTimeOffset(),
+        FhirDateTime date => date.ToDateTimeOffset(TimeSpan.Zero),
+        Period period when period.StartElement is not null => period.StartElement.ToDateTimeOffset(TimeSpan.Zero),
         _ => null
     };
 
