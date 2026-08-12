@@ -66,12 +66,12 @@ def create_workflow(
     bundle = request.fhir_bundle
     if bundle.get("resourceType") != "Bundle":
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail="fhirBundle.resourceType must be Bundle",
         )
     if not _is_synthetic_bundle(bundle):
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail="Only bundles explicitly tagged as synthetic are accepted",
         )
 
@@ -87,4 +87,3 @@ def create_workflow(
             "implemented in Weeks 6–7."
         ),
     )
-

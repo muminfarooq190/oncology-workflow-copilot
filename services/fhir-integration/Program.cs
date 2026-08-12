@@ -92,5 +92,4 @@ static Dictionary<string, int> CountResourceTypes(JsonElement bundle)
     return counts;
 }
 
-public partial class Program;
-
+public partial class Program { }

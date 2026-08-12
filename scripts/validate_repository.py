@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Validate repository-owned JSON contracts and synthetic evaluation manifests."""
 
 from __future__ import annotations
@@ -14,6 +13,7 @@ except ImportError:  # Local minimal environments; CI installs jsonschema for fu
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_PARTITIONS = {"development", "validation", "locked_test"}
+EXCLUDED_DIRECTORIES = {".git", ".venv", "dist", "node_modules"}
 
 
 def load_json(path: Path) -> Any:
@@ -24,11 +24,14 @@ def load_json(path: Path) -> Any:
 
 
 def validate_json_files() -> int:
-    paths = sorted(ROOT.glob("**/*.json"))
+    paths = [
+        path
+        for path in sorted(ROOT.glob("**/*.json"))
+        if not EXCLUDED_DIRECTORIES.intersection(path.relative_to(ROOT).parts)
+    ]
     for path in paths:
-        if "node_modules" not in path.parts:
-            load_json(path)
-    return sum("node_modules" not in path.parts for path in paths)
+        load_json(path)
+    return len(paths)
 
 
 def validate_contracts() -> int:
