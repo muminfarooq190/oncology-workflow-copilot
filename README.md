@@ -70,7 +70,7 @@ The implementation is deliberately staged. See [the execution roadmap](docs/ROAD
 
 ## Current status
 
-**Week 6 — FHIR normalization:** strict Firely R4 parsing and structural validation, self-contained reference checks, canonical NSCLC mapping with field-level provenance, deterministic completeness/contradiction rules, a reproducible 25-case synthetic suite, and extraction scoring.
+**Week 7 — durable orchestration:** PostgreSQL-backed state and idempotent intake, a transactional outbox, Redis Streams workers with recovery and bounded retries, dead-letter requeue, database-enforced append-only audit, dependency readiness, and real-service integration tests. The Week 6 .NET FHIR normalizer remains the sole interpreter of raw FHIR.
 
 ## Contribution rules
 

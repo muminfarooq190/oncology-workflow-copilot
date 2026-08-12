@@ -1,19 +1,10 @@
 from datetime import datetime
-from enum import StrEnum
 from typing import Any
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-
-class WorkflowStatus(StrEnum):
-    RECEIVED = "received"
-    INVALID = "invalid"
-    NORMALIZED = "normalized"
-    PROCESSING = "processing"
-    REVIEW_REQUIRED = "review_required"
-    APPROVED = "approved"
-    ESCALATED = "escalated"
+from app.domain import WorkflowStatus
 
 
 class WorkflowCreate(BaseModel):
@@ -32,8 +23,57 @@ class WorkflowAccepted(BaseModel):
     message: str
 
 
+class WorkflowView(BaseModel):
+    model_config = ConfigDict(extra="forbid", from_attributes=True, populate_by_name=True)
+
+    workflow_id: UUID = Field(alias="workflowId", validation_alias="id")
+    status: WorkflowStatus
+    attempts: int
+    max_attempts: int = Field(alias="maxAttempts")
+    created_at: datetime = Field(alias="createdAt")
+    updated_at: datetime = Field(alias="updatedAt")
+    validation_result: dict[str, Any] | None = Field(alias="validationResult")
+    canonical_case: dict[str, Any] | None = Field(alias="canonicalCase")
+    last_error_code: str | None = Field(alias="lastErrorCode")
+    last_error_message: str | None = Field(alias="lastErrorMessage")
+
+
+class AuditActor(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    subject: str
+    role: str
+
+
+class AuditEventView(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    event_id: UUID = Field(alias="eventId")
+    occurred_at: datetime = Field(alias="occurredAt")
+    workflow_id: UUID = Field(alias="workflowId")
+    tenant_id: str = Field(alias="tenantId")
+    actor: AuditActor
+    action: str
+    trace_id: str = Field(alias="traceId")
+    prior_state: WorkflowStatus | None = Field(alias="priorState")
+    next_state: WorkflowStatus = Field(alias="nextState")
+    input_hash: str = Field(alias="inputHash")
+    output_hash: str | None = Field(alias="outputHash")
+    metadata: dict[str, Any]
+
+
+class DependencyHealth(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    postgres: str
+    redis: str
+    fhir_integration: str = Field(alias="fhirIntegration")
+
+
 class HealthResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     status: str
     service: str
     version: str
-
+    dependencies: DependencyHealth | None = None

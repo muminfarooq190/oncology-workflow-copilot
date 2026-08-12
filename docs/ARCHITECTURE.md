@@ -16,9 +16,13 @@ flowchart TD
     U["Clinician"] --> W["React review app"]
     W --> A["FastAPI orchestrator"]
     A --> F[".NET FHIR service"]
-    A --> Q["Redis worker queue"]
-    Q --> P["PostgreSQL and pgvector"]
-    Q --> M["Model provider"]
+    A --> P["PostgreSQL and pgvector"]
+    P --> D["Outbox dispatcher"]
+    D --> Q["Redis Streams"]
+    Q --> K["Workflow worker"]
+    K --> F
+    K --> P
+    K --> M["Model provider"]
     A --> O["OpenTelemetry"]
     F --> O
     Q --> O
@@ -40,8 +44,14 @@ flowchart TD
 ```mermaid
 stateDiagram-v2
     [*] --> Received
-    Received --> Invalid: validation fails
-    Received --> Normalized: FHIR accepted
+    Received --> Queued
+    Queued --> Validating
+    Validating --> Invalid: FHIR rejected
+    Validating --> Normalized: FHIR accepted
+    Validating --> RetryWait: transient failure
+    RetryWait --> Validating: retry due
+    Validating --> DeadLetter: retry budget exhausted
+    DeadLetter --> Queued: explicit retry
     Normalized --> Processing
     Processing --> ReviewRequired: draft verified
     Processing --> Escalated: safety rule
@@ -52,7 +62,15 @@ stateDiagram-v2
     Escalated --> [*]
 ```
 
-State transitions use optimistic concurrency and an idempotency key. A retry may repeat a completed stage but may not create a second logical workflow or duplicate an audit event.
+State transitions are serialized with row locks and protected by a tenant-scoped idempotency constraint. A retry may repeat a side effect but cannot create a second logical workflow or duplicate a terminal transition or audit event.
+
+## Durable delivery
+
+Workflow intake writes the workflow, initial audit events, and a normalization-request outbox row in one PostgreSQL transaction. A dispatcher publishes due tenant-scoped rows to a Redis Stream and marks them published. The worker acknowledges a stream entry only after committing its next database state.
+
+This is deliberately **at-least-once** delivery. If the dispatcher crashes after publishing but before recording success, it may publish again. If a worker crashes after committing but before acknowledging, Redis may redeliver. The outbox ID, locked state transition, and terminal-state check make both paths idempotent. Pending entries idle beyond the claim threshold are reclaimed by a live consumer.
+
+Audit events are append-only at the database boundary: PostgreSQL rejects both updates and deletes through a trigger. Payload hashes use canonical JSON and the audit event contract's `sha256:` representation.
 
 ## Canonical contracts
 
@@ -79,4 +97,3 @@ The corpus is ingested offline. Each chunk records source, publication date, loc
 ## Architecture decisions
 
 Formal decisions live in `docs/adr/` and should be updated when assumptions change.
-
