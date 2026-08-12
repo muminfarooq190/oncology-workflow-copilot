@@ -137,6 +137,9 @@ async def ingest_corpus(
                 frozen_at=_parse_datetime(manifest["frozenAt"]),
             )
         )
+        # The ORM has no relationship between these immutable records. Flush the parent
+        # explicitly so the database foreign key is satisfied before chunk INSERTs.
+        await session.flush()
         session.add_all(
             EvidenceChunkRecord(
                 chunk_id=chunk["chunkId"],

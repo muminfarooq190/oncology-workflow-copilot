@@ -158,7 +158,8 @@ def make_invalid_birth_date(bundle: dict[str, Any]) -> None:
 
 
 def remove_primary_site(bundle: dict[str, Any]) -> None:
-    resource(bundle, "condition-nsclc-001")["bodySite"] = []
+    # FHIR JSON omits absent repeatable elements; an empty JSON array is invalid.
+    resource(bundle, "condition-nsclc-001").pop("bodySite", None)
 
 
 def add_record_injection(bundle: dict[str, Any], target: str) -> None:
