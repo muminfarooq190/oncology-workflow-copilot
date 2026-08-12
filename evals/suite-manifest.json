@@ -1,7 +1,7 @@
 {
-  "suiteVersion": "week6-v1",
+  "suiteVersion": "week8-v1",
   "generator": "scripts/generate_week6_cases.py",
-  "caseCount": 25,
+  "caseCount": 60,
   "clinicalAdjudicationStatus": "pending",
   "cases": [
     {
@@ -153,6 +153,216 @@
       "category": "invalid_fhir",
       "partition": "development",
       "expectedValid": false
+    },
+    {
+      "caseId": "nsclc-026",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-027",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-028",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-029",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-030",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-031",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-032",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-033",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-034",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-035",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-036",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-037",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-038",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-039",
+      "category": "typical_complete",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-040",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-041",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-042",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-043",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-044",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-045",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-046",
+      "category": "missing_required_information",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-047",
+      "category": "contradictory_data",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-048",
+      "category": "contradictory_data",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-049",
+      "category": "contradictory_data",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-050",
+      "category": "contradictory_data",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-051",
+      "category": "contradictory_data",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-052",
+      "category": "rare_or_ambiguous",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-053",
+      "category": "rare_or_ambiguous",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-054",
+      "category": "rare_or_ambiguous",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-055",
+      "category": "rare_or_ambiguous",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-056",
+      "category": "rare_or_ambiguous",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-057",
+      "category": "adversarial_record_content",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-058",
+      "category": "adversarial_record_content",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-059",
+      "category": "adversarial_record_content",
+      "partition": "development",
+      "expectedValid": true
+    },
+    {
+      "caseId": "nsclc-060",
+      "category": "adversarial_record_content",
+      "partition": "development",
+      "expectedValid": true
     }
   ]
 }

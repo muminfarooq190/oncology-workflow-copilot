@@ -1,10 +1,13 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 from uuid import UUID, uuid4
 
+from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
     BigInteger,
     CheckConstraint,
+    Computed,
+    Date,
     DateTime,
     ForeignKey,
     Identity,
@@ -13,7 +16,7 @@ from sqlalchemy import (
     String,
     Text,
 )
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.sql import func
@@ -111,4 +114,53 @@ class OutboxRecord(Base):
             "publish_attempts >= 0", name="ck_outbox_publish_attempts_nonnegative"
         ),
         Index("ix_outbox_due", "published_at", "available_at"),
+    )
+
+
+class EvidenceCorpusRecord(Base):
+    __tablename__ = "evidence_corpora"
+
+    version: Mapped[str] = mapped_column(String(64), primary_key=True)
+    manifest_hash: Mapped[str] = mapped_column(String(71), nullable=False)
+    corpus_hash: Mapped[str] = mapped_column(String(71), nullable=False)
+    status: Mapped[str] = mapped_column(String(32), nullable=False)
+    embedding_provider: Mapped[str] = mapped_column(String(128), nullable=False)
+    embedding_dimensions: Mapped[int] = mapped_column(Integer, nullable=False)
+    frozen_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    ingested_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+
+
+class EvidenceChunkRecord(Base):
+    __tablename__ = "evidence_chunks"
+
+    chunk_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    corpus_version: Mapped[str] = mapped_column(
+        String(64), ForeignKey("evidence_corpora.version"), nullable=False
+    )
+    source_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    source_title: Mapped[str] = mapped_column(Text, nullable=False)
+    source_url: Mapped[str] = mapped_column(Text, nullable=False)
+    publication_date: Mapped[date] = mapped_column(Date, nullable=False)
+    locator: Mapped[str] = mapped_column(Text, nullable=False)
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    content_hash: Mapped[str] = mapped_column(String(71), nullable=False)
+    license_status: Mapped[str] = mapped_column(String(128), nullable=False)
+    tumor_type: Mapped[str] = mapped_column(String(64), nullable=False)
+    tags: Mapped[list[str]] = mapped_column(JSONB, nullable=False)
+    embedding: Mapped[list[float]] = mapped_column(Vector(256), nullable=False)
+    search_vector: Mapped[str] = mapped_column(
+        TSVECTOR,
+        Computed(
+            "setweight(to_tsvector('english', coalesce(source_title, '')), 'A') || "
+            "setweight(to_tsvector('english', coalesce(content, '')), 'B')",
+            persisted=True,
+        ),
+        nullable=False,
+    )
+
+    __table_args__ = (
+        Index("ix_evidence_chunks_corpus_tumor", "corpus_version", "tumor_type"),
+        Index("ix_evidence_chunks_search_vector", "search_vector", postgresql_using="gin"),
     )

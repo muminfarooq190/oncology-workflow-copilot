@@ -1,0 +1,272 @@
+{
+  "corpusVersion": "nsclc-v1",
+  "frozenAt": "2026-08-12T00:00:00Z",
+  "clinicalScope": ["adult", "NSCLC"],
+  "embedding": {
+    "provider": "clinical-hash-embedding-v1",
+    "dimensions": 256
+  },
+  "retrieval": {
+    "lexical": "postgresql-english-tsvector-v1",
+    "vectorDistance": "cosine",
+    "fusion": "rrf-v1",
+    "rrfK": 60,
+    "candidateLimit": 50
+  },
+  "sources": [
+    {
+      "sourceId": "nci-nsclc-pdq-2025",
+      "sourceClass": "NCI public clinical information",
+      "sourceTitle": "Non-Small Cell Lung Cancer Treatment (PDQ) - Health Professional Version",
+      "sourceUrl": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq",
+      "publicationDate": "2025-05-15",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "nci-nsclc-overview-001",
+          "locator": "Overview and treatment-by-stage sections",
+          "tags": ["pathology", "histology", "stage", "multidisciplinary"],
+          "content": "NSCLC management is organized by disease extent and clinical context. A tumor-board evidence review should establish histology, clinical and pathological stage, resectability, molecular findings, functional status, comorbidity, and prior therapy before discussing surgery, radiation, cytotoxic therapy, immunotherapy, or targeted therapy."
+        },
+        {
+          "chunkId": "nci-nsclc-staging-001",
+          "locator": "General Staging Evaluation",
+          "tags": ["staging", "brain imaging", "PET", "CT", "pathology"],
+          "content": "Initial NSCLC staging defines local and distant disease using history, examination, laboratory assessment, chest imaging, contrast CT, and FDG PET where appropriate. Brain CT or MRI may be considered when metastatic risk is suspected or when stage III disease is being evaluated for aggressive combined-modality treatment. Clinical and pathological stage must not be conflated."
+        },
+        {
+          "chunkId": "nci-nsclc-early-stage-001",
+          "locator": "Treatment of Stages I and II NSCLC",
+          "tags": ["stage I", "stage II", "resectable", "surgery", "radiation"],
+          "content": "Potentially resectable stage I and II NSCLC requires assessment of operative fitness, anatomic resectability, nodal status, and pathological risk features. Surgery is a central curative modality for operable disease; radiation strategies are relevant when surgery is unsuitable. Perioperative systemic options depend on stage, tumor size, nodal involvement, and biomarkers."
+        },
+        {
+          "chunkId": "nci-nsclc-stage-iii-001",
+          "locator": "Treatment of Stage III NSCLC",
+          "tags": ["stage III", "locally advanced", "chemoradiation", "multimodality"],
+          "content": "Stage III NSCLC is heterogeneous and requires multidisciplinary definition of nodal burden, resectability, performance status, and molecular features. Management may involve surgery in selected resectable presentations or combined chemotherapy and thoracic radiation for unresectable disease, followed by an evidence-appropriate consolidation strategy."
+        },
+        {
+          "chunkId": "nci-nsclc-stage-iv-001",
+          "locator": "Treatment of Newly Diagnosed Stage IV, Relapsed, and Recurrent NSCLC",
+          "tags": ["stage IV", "metastatic", "EGFR", "ALK", "ROS1", "BRAF", "RET", "MET", "NTRK", "PD-L1"],
+          "content": "For stage IV or recurrent NSCLC, systemic evidence selection depends on histology, actionable tumor alterations, PD-L1 expression, performance status, comorbidity, and previous therapy. The NCI PDQ discusses targeted strategies for EGFR, ALK, BRAF V600E, ROS1, NTRK, RET, and MET alterations alongside immune checkpoint and chemotherapy approaches."
+        },
+        {
+          "chunkId": "nci-nsclc-performance-001",
+          "locator": "Stage IV treatment: performance status",
+          "tags": ["ECOG", "performance status", "fitness", "comorbidity"],
+          "content": "Performance status is a major prognostic and treatment-selection variable in advanced NSCLC. Evidence from trial populations is not automatically transferable to patients with poor functional status. A tumor-board packet should therefore surface the latest ECOG score, comorbidities, organ function, symptoms, and uncertainty rather than infer treatment fitness."
+        }
+      ]
+    },
+    {
+      "sourceId": "nci-biomarker-testing-2021",
+      "sourceClass": "NCI public clinical information",
+      "sourceTitle": "Biomarker Testing for Cancer Treatment",
+      "sourceUrl": "https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment",
+      "publicationDate": "2021-12-14",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "nci-biomarker-testing-001",
+          "locator": "What is biomarker testing?",
+          "tags": ["biomarker", "molecular testing", "genomic profiling", "companion diagnostic", "liquid biopsy"],
+          "content": "Biomarker testing examines tumor tissue, blood, or other material for molecular features that can inform cancer treatment. Related terms include molecular testing, genomic profiling, tumor testing, and companion diagnostic testing. Results must be interpreted with specimen source, assay, timing, adequacy, and disease context."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-alectinib-adjuvant-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves alectinib as adjuvant treatment for ALK-positive NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-alectinib-adjuvant-treatment-alk-positive-non-small-cell-lung-cancer",
+      "publicationDate": "2024-04-18",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-alectinib-adjuvant-001",
+          "locator": "Approval summary and ALINA eligibility",
+          "tags": ["ALK", "alectinib", "adjuvant", "resected", "ALINA"],
+          "content": "The FDA approved adjuvant alectinib after tumor resection for ALK-positive NSCLC detected by an approved test. The ALINA evidence population had completely resected disease corresponding to stage IB with tumors at least four centimeters through stage IIIA under AJCC seventh edition criteria."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-pembrolizumab-perioperative-2023",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves neoadjuvant and adjuvant pembrolizumab for resectable NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-neoadjuvant-adjuvant-pembrolizumab-resectable-non-small-cell-lung-cancer",
+      "publicationDate": "2023-10-16",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-pembrolizumab-perioperative-001",
+          "locator": "Approval summary and KEYNOTE-671 eligibility",
+          "tags": ["pembrolizumab", "neoadjuvant", "adjuvant", "resectable", "KEYNOTE-671"],
+          "content": "The FDA approved pembrolizumab with platinum chemotherapy before surgery and continued pembrolizumab after surgery for resectable NSCLC with tumors at least four centimeters or node-positive disease. KEYNOTE-671 enrolled previously untreated resectable stage II through selected stage IIIB N2 disease."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-durvalumab-perioperative-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves neoadjuvant and adjuvant durvalumab for resectable NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-neoadjuvantadjuvant-durvalumab-resectable-non-small-cell-lung-cancer",
+      "publicationDate": "2024-08-15",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-durvalumab-perioperative-001",
+          "locator": "Approval summary and AEGEAN eligibility",
+          "tags": ["durvalumab", "neoadjuvant", "adjuvant", "resectable", "AEGEAN", "EGFR", "ALK"],
+          "content": "The FDA approved perioperative durvalumab with platinum chemotherapy before surgery and durvalumab after surgery for resectable NSCLC with tumors at least four centimeters or node-positive disease, excluding known EGFR-mutated or ALK-rearranged tumors. AEGEAN included stage IIA through selected stage IIIB disease."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-osimertinib-stage-iii-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approval of osimertinib for unresectable stage III EGFR-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/news-events/press-announcements/fda-roundup-september-27-2024",
+      "publicationDate": "2024-09-27",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-osimertinib-stage-iii-001",
+          "locator": "September 2024 oncology approval item",
+          "tags": ["EGFR", "osimertinib", "stage III", "unresectable", "chemoradiation", "LAURA"],
+          "content": "The FDA approved osimertinib for locally advanced unresectable stage III NSCLC that has not progressed during or after platinum chemoradiation when an approved test identifies an EGFR exon 19 deletion or exon 21 L858R mutation."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-tepotinib-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves tepotinib for metastatic NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-tepotinib-metastatic-non-small-cell-lung-cancer",
+      "publicationDate": "2024-02-16",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-tepotinib-met-001",
+          "locator": "Traditional approval summary",
+          "tags": ["MET", "MET exon 14", "tepotinib", "metastatic"],
+          "content": "The FDA granted traditional approval to tepotinib for adults with metastatic NSCLC harboring MET exon 14 skipping alterations. The molecular alteration and metastatic setting are essential retrieval filters; MET protein overexpression is a distinct evidence context."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-repotrectinib-ros1-2023",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves repotrectinib for ROS1-positive NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-repotrectinib-ros1-positive-non-small-cell-lung-cancer",
+      "publicationDate": "2023-11-16",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-repotrectinib-ros1-001",
+          "locator": "ROS1-positive NSCLC approval summary",
+          "tags": ["ROS1", "repotrectinib", "TKI", "metastatic"],
+          "content": "The FDA approved repotrectinib for locally advanced or metastatic ROS1-positive NSCLC. The evidence population included both ROS1 inhibitor-naive and previously ROS1-TKI-treated cohorts, so prior targeted-therapy exposure is important retrieval context."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-repotrectinib-ntrk-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA grants accelerated approval to repotrectinib for NTRK fusion-positive solid tumors",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-repotrectinib-adult-and-pediatric-patients-ntrk-gene-fusion-positive",
+      "publicationDate": "2024-06-13",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-repotrectinib-ntrk-001",
+          "locator": "NTRK fusion-positive solid tumor approval summary, June 2024",
+          "tags": ["NTRK", "TRK", "repotrectinib", "gene fusion", "solid tumor"],
+          "content": "The FDA granted accelerated approval to repotrectinib for patients aged twelve years or older with NTRK gene fusion-positive locally advanced or metastatic solid tumors when surgery would cause severe morbidity and disease has progressed after treatment or lacks satisfactory alternatives."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-adagrasib-2022",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approval of adagrasib for KRAS G12C-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-disco-burst-edition-fda-approvals-tecentriq-atezolizumab-unresectable-or-metastatic-alveolar",
+      "publicationDate": "2022-12-12",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-adagrasib-kras-001",
+          "locator": "Krazati NSCLC accelerated approval summary",
+          "tags": ["KRAS G12C", "adagrasib", "Krazati", "previous therapy", "metastatic"],
+          "content": "The FDA granted accelerated approval to adagrasib for adults with KRAS G12C-mutated locally advanced or metastatic NSCLC, identified by an approved test, after at least one prior systemic therapy. The approval context should not be generalized to untreated disease or other KRAS variants."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-datopotamab-2025",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA accelerated approval of datopotamab deruxtecan for EGFR-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-datopotamab-deruxtecan-dlnk-egfr-mutated-non-small-cell-lung-cancer",
+      "publicationDate": "2025-06-23",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-datopotamab-egfr-001",
+          "locator": "Accelerated approval summary",
+          "tags": ["EGFR", "datopotamab deruxtecan", "TROP2", "previous therapy", "platinum"],
+          "content": "The FDA granted accelerated approval to datopotamab deruxtecan for adults with locally advanced or metastatic EGFR-mutated NSCLC after prior EGFR-directed therapy and platinum chemotherapy. Prior treatment sequence is part of the indication context and must be retained in citations."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-telisotuzumab-2025",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA accelerated approval of telisotuzumab vedotin for high c-Met NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-telisotuzumab-vedotin-tllv-nsclc-high-c-met-protein-overexpression",
+      "publicationDate": "2025-05-14",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-telisotuzumab-cmet-001",
+          "locator": "Accelerated approval summary",
+          "tags": ["c-Met", "MET protein overexpression", "telisotuzumab vedotin", "previous therapy"],
+          "content": "The FDA granted accelerated approval to telisotuzumab vedotin for previously treated, locally advanced or metastatic nonsquamous NSCLC with high c-Met protein overexpression measured by an approved assay. This protein-expression setting is not interchangeable with MET exon 14 skipping."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-selpercatinib-2026",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA traditional approval of selpercatinib for RET fusion-positive solid tumors",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-traditional-approval-selpercatinib-locally-advanced-or-metastatic-ret-fusion-positive",
+      "publicationDate": "2026-07-14",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-selpercatinib-ret-001",
+          "locator": "Traditional approval summary",
+          "tags": ["RET fusion", "selpercatinib", "Retevmo", "solid tumor", "previous therapy"],
+          "content": "The FDA granted traditional approval to selpercatinib for patients aged two years or older with locally advanced or metastatic RET fusion-positive solid tumors after prior systemic therapy or when satisfactory alternatives are absent. Disease-specific context and prior therapy remain necessary for tumor-board interpretation."
+        }
+      ]
+    },
+    {
+      "sourceId": "fda-sevabertinib-2025",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA accelerated approval of sevabertinib for HER2-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-sevabertinib-non-squamous-non-small-cell-lung-cancer",
+      "publicationDate": "2025-11-19",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunks": [
+        {
+          "chunkId": "fda-sevabertinib-her2-001",
+          "locator": "Accelerated approval summary",
+          "tags": ["HER2", "ERBB2", "sevabertinib", "tyrosine kinase domain", "previous therapy"],
+          "content": "The FDA granted accelerated approval to sevabertinib for previously treated adults with locally advanced or metastatic nonsquamous NSCLC containing HER2 or ERBB2 tyrosine-kinase-domain activating mutations detected by an approved test. HER2 mutation and HER2 protein expression are different biomarkers."
+        }
+      ]
+    }
+  ]
+}

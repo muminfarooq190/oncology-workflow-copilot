@@ -9,7 +9,7 @@ public sealed class Week6SuiteTests
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     private readonly FhirBundleProcessor _processor = new();
 
-    public static IEnumerable<object[]> CaseIds => Enumerable.Range(1, 25)
+    public static IEnumerable<object[]> CaseIds => Enumerable.Range(1, 60)
         .Select(number => new object[] { $"nsclc-{number:000}" });
 
     [Theory]

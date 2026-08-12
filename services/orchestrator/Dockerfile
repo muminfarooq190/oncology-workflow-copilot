@@ -5,10 +5,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-COPY pyproject.toml ./
-COPY app ./app
-COPY alembic.ini ./
-COPY migrations ./migrations
+COPY services/orchestrator/pyproject.toml ./
+COPY services/orchestrator/app ./app
+COPY services/orchestrator/alembic.ini ./
+COPY services/orchestrator/migrations ./migrations
+COPY evidence ./evidence
 RUN pip install --no-cache-dir .
 
 RUN useradd --create-home --uid 10001 appuser

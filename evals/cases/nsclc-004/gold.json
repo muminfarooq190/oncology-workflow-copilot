@@ -165,7 +165,11 @@
   },
   "expectedMissingInformation": [],
   "expectedContradictions": [],
-  "goldRelevantEvidenceChunkIds": [],
+  "evidenceCorpusVersion": "nsclc-v1",
+  "retrievalQuery": "previously treated KRAS G12C metastatic NSCLC adagrasib",
+  "goldRelevantEvidenceChunkIds": [
+    "fda-adagrasib-kras-001"
+  ],
   "supportedDiscussionPointIds": [],
-  "notes": "Week 6 engineering gold generated deterministically. Clinical adjudication is required before promotion to validation."
+  "notes": "Week 8 engineering gold generated deterministically. Clinical adjudication is required before promotion beyond the development partition."
 }

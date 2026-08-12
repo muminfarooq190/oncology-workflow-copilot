@@ -11,17 +11,27 @@ Week 7 implements durable workflow intake and FHIR-normalization execution:
 - Transient failures use bounded exponential retries and finish in `dead_letter`; an explicit API command can requeue them.
 - A PostgreSQL trigger rejects `UPDATE` and `DELETE` against audit events.
 
+Week 8 adds frozen evidence ingestion and hybrid retrieval:
+
+- A manifest and per-chunk SHA-256 checks make the `nsclc-v1` snapshot reproducible.
+- Idempotent ingestion rejects immutable-version conflicts.
+- PostgreSQL English full-text search and pgvector cosine ranking produce independent candidates.
+- Reciprocal-rank fusion combines the lists while retaining both component ranks.
+- Search responses include the source URL, date, locator, content hash, and corpus/model versions.
+
 ## Processes
 
-The same image runs three independent processes:
+The same image runs five independent commands:
 
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 python -m app.outbox
 python -m app.worker
+alembic upgrade head
+python -m app.evidence_ingest /app/evidence/manifest.json
 ```
 
-Run `alembic upgrade head` before starting them. Docker Compose handles migration ordering and process startup.
+Run the migration and evidence-ingestion commands before starting the API. Docker Compose handles this ordering.
 
 ## API
 
@@ -29,5 +39,6 @@ Run `alembic upgrade head` before starting them. Docker Compose handles migratio
 - `GET /v1/workflows/{workflow_id}` — durable status and normalization result.
 - `GET /v1/workflows/{workflow_id}/audit` — ordered append-only history.
 - `POST /v1/workflows/{workflow_id}/retry` — explicit dead-letter recovery.
+- `POST /v1/evidence/search` — versioned hybrid evidence search with reviewable provenance.
 - `GET /health/live` — process health only.
 - `GET /health/ready` — PostgreSQL, Redis, and FHIR integration probes.

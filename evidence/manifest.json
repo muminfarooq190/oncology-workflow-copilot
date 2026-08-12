@@ -1,12 +1,28 @@
 {
   "corpusVersion": "nsclc-v1",
-  "status": "planned",
-  "clinicalScope": ["adult", "NSCLC"],
+  "status": "frozen",
+  "frozenAt": "2026-08-12T00:00:00Z",
+  "clinicalScope": [
+    "adult",
+    "NSCLC"
+  ],
+  "embedding": {
+    "provider": "clinical-hash-embedding-v1",
+    "dimensions": 256
+  },
+  "retrieval": {
+    "lexical": "postgresql-english-tsvector-v1",
+    "vectorDistance": "cosine",
+    "fusion": "rrf-v1",
+    "rrfK": 60,
+    "candidateLimit": 50
+  },
+  "chunkFile": "corpus/nsclc-v1/chunks.json",
+  "chunkCount": 19,
+  "corpusHash": "sha256:3f15c19c7342c74edaf2f29a2cdbbb70353f162d7ec6cb50bc702f17a7f81054",
   "allowedSourceClasses": [
-    "FDA prescribing information",
-    "NCI public clinical information",
-    "PubMed abstract and metadata",
-    "open-access peer-reviewed article"
+    "FDA approval notification",
+    "NCI public clinical information"
   ],
   "requiredChunkMetadata": [
     "chunkId",
@@ -20,6 +36,165 @@
     "tumorType",
     "corpusVersion"
   ],
-  "sources": []
+  "sources": [
+    {
+      "sourceId": "nci-nsclc-pdq-2025",
+      "sourceClass": "NCI public clinical information",
+      "sourceTitle": "Non-Small Cell Lung Cancer Treatment (PDQ) - Health Professional Version",
+      "sourceUrl": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq",
+      "publicationDate": "2025-05-15",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "nci-nsclc-overview-001",
+        "nci-nsclc-staging-001",
+        "nci-nsclc-early-stage-001",
+        "nci-nsclc-stage-iii-001",
+        "nci-nsclc-stage-iv-001",
+        "nci-nsclc-performance-001"
+      ]
+    },
+    {
+      "sourceId": "nci-biomarker-testing-2021",
+      "sourceClass": "NCI public clinical information",
+      "sourceTitle": "Biomarker Testing for Cancer Treatment",
+      "sourceUrl": "https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment",
+      "publicationDate": "2021-12-14",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "nci-biomarker-testing-001"
+      ]
+    },
+    {
+      "sourceId": "fda-alectinib-adjuvant-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves alectinib as adjuvant treatment for ALK-positive NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-alectinib-adjuvant-treatment-alk-positive-non-small-cell-lung-cancer",
+      "publicationDate": "2024-04-18",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-alectinib-adjuvant-001"
+      ]
+    },
+    {
+      "sourceId": "fda-pembrolizumab-perioperative-2023",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves neoadjuvant and adjuvant pembrolizumab for resectable NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-neoadjuvant-adjuvant-pembrolizumab-resectable-non-small-cell-lung-cancer",
+      "publicationDate": "2023-10-16",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-pembrolizumab-perioperative-001"
+      ]
+    },
+    {
+      "sourceId": "fda-durvalumab-perioperative-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves neoadjuvant and adjuvant durvalumab for resectable NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-neoadjuvantadjuvant-durvalumab-resectable-non-small-cell-lung-cancer",
+      "publicationDate": "2024-08-15",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-durvalumab-perioperative-001"
+      ]
+    },
+    {
+      "sourceId": "fda-osimertinib-stage-iii-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approval of osimertinib for unresectable stage III EGFR-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/news-events/press-announcements/fda-roundup-september-27-2024",
+      "publicationDate": "2024-09-27",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-osimertinib-stage-iii-001"
+      ]
+    },
+    {
+      "sourceId": "fda-tepotinib-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves tepotinib for metastatic NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-tepotinib-metastatic-non-small-cell-lung-cancer",
+      "publicationDate": "2024-02-16",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-tepotinib-met-001"
+      ]
+    },
+    {
+      "sourceId": "fda-repotrectinib-ros1-2023",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approves repotrectinib for ROS1-positive NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-repotrectinib-ros1-positive-non-small-cell-lung-cancer",
+      "publicationDate": "2023-11-16",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-repotrectinib-ros1-001"
+      ]
+    },
+    {
+      "sourceId": "fda-repotrectinib-ntrk-2024",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA grants accelerated approval to repotrectinib for NTRK fusion-positive solid tumors",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-repotrectinib-adult-and-pediatric-patients-ntrk-gene-fusion-positive",
+      "publicationDate": "2024-06-13",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-repotrectinib-ntrk-001"
+      ]
+    },
+    {
+      "sourceId": "fda-adagrasib-2022",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA approval of adagrasib for KRAS G12C-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-disco-burst-edition-fda-approvals-tecentriq-atezolizumab-unresectable-or-metastatic-alveolar",
+      "publicationDate": "2022-12-12",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-adagrasib-kras-001"
+      ]
+    },
+    {
+      "sourceId": "fda-datopotamab-2025",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA accelerated approval of datopotamab deruxtecan for EGFR-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-datopotamab-deruxtecan-dlnk-egfr-mutated-non-small-cell-lung-cancer",
+      "publicationDate": "2025-06-23",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-datopotamab-egfr-001"
+      ]
+    },
+    {
+      "sourceId": "fda-telisotuzumab-2025",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA accelerated approval of telisotuzumab vedotin for high c-Met NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-telisotuzumab-vedotin-tllv-nsclc-high-c-met-protein-overexpression",
+      "publicationDate": "2025-05-14",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-telisotuzumab-cmet-001"
+      ]
+    },
+    {
+      "sourceId": "fda-selpercatinib-2026",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA traditional approval of selpercatinib for RET fusion-positive solid tumors",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-traditional-approval-selpercatinib-locally-advanced-or-metastatic-ret-fusion-positive",
+      "publicationDate": "2026-07-14",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-selpercatinib-ret-001"
+      ]
+    },
+    {
+      "sourceId": "fda-sevabertinib-2025",
+      "sourceClass": "FDA approval notification",
+      "sourceTitle": "FDA accelerated approval of sevabertinib for HER2-mutated NSCLC",
+      "sourceUrl": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-sevabertinib-non-squamous-non-small-cell-lung-cancer",
+      "publicationDate": "2025-11-19",
+      "licenseStatus": "original-paraphrase-linked-to-us-government-source",
+      "chunkIds": [
+        "fda-sevabertinib-her2-001"
+      ]
+    }
+  ]
 }
-

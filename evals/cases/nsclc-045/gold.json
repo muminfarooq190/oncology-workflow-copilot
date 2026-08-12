@@ -1,0 +1,156 @@
+{
+  "caseId": "nsclc-045",
+  "expectedValidation": {
+    "valid": true,
+    "issueCodes": []
+  },
+  "expectedFields": {
+    "patient.sex": "male",
+    "patient.ageYears": 68,
+    "disease.histology.value": "Poorly differentiated lung adenocarcinoma",
+    "disease.stage.system": "AJCC 8th edition",
+    "disease.stage.clinicalT": "cT2a",
+    "disease.stage.clinicalN": "cN2",
+    "disease.stage.clinicalM": "cM1c",
+    "disease.stage.group": "IVB",
+    "disease.performanceStatus.scale": "ECOG",
+    "disease.performanceStatus.score": 1
+  },
+  "expectedBiomarkers": [
+    {
+      "name": "ALK",
+      "result": "Not detected",
+      "unit": null,
+      "status": "negative"
+    },
+    {
+      "name": "EGFR",
+      "result": "EGFR exon 21 L858R detected",
+      "unit": null,
+      "status": "positive"
+    },
+    {
+      "name": "PD-L1 TPS",
+      "result": 60,
+      "unit": "%",
+      "status": "positive"
+    },
+    {
+      "name": "ROS1",
+      "result": "Not detected",
+      "unit": null,
+      "status": "negative"
+    }
+  ],
+  "expectedProvenance": {
+    "patient.sex": [
+      {
+        "resourceType": "Patient",
+        "resourceId": "patient-nsclc-045",
+        "jsonPath": "$.entry[0].resource.gender"
+      }
+    ],
+    "patient.ageYears": [
+      {
+        "resourceType": "Patient",
+        "resourceId": "patient-nsclc-045",
+        "jsonPath": "$.entry[0].resource.birthDate"
+      }
+    ],
+    "disease.histology.value": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-histology-045",
+        "jsonPath": "$.entry[2].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.system": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-045",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.clinicalT": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-045",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.clinicalN": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-045",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.clinicalM": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-045",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.stage.group": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-stage-045",
+        "jsonPath": "$.entry[3].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.performanceStatus.scale": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-ecog-045",
+        "jsonPath": "$.entry[8].resource.valueInteger"
+      }
+    ],
+    "disease.performanceStatus.score": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-ecog-045",
+        "jsonPath": "$.entry[8].resource.valueInteger"
+      }
+    ],
+    "disease.biomarkers.EGFR": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-egfr-045",
+        "jsonPath": "$.entry[4].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.biomarkers.ALK": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-alk-045",
+        "jsonPath": "$.entry[5].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.biomarkers.ROS1": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-ros1-045",
+        "jsonPath": "$.entry[6].resource.valueCodeableConcept"
+      }
+    ],
+    "disease.biomarkers.PD-L1 TPS": [
+      {
+        "resourceType": "Observation",
+        "resourceId": "observation-pdl1-045",
+        "jsonPath": "$.entry[7].resource.valueQuantity"
+      }
+    ]
+  },
+  "expectedMissingInformation": [
+    "disease.primarySite"
+  ],
+  "expectedContradictions": [],
+  "evidenceCorpusVersion": "nsclc-v1",
+  "retrievalQuery": "primary tumor site needed for NSCLC staging",
+  "goldRelevantEvidenceChunkIds": [
+    "nci-nsclc-staging-001"
+  ],
+  "supportedDiscussionPointIds": [],
+  "notes": "Week 8 engineering gold generated deterministically. Clinical adjudication is required before promotion beyond the development partition."
+}

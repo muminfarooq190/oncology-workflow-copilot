@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,14 @@ def load_json(path: Path) -> Any:
         return json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         raise AssertionError(f"Invalid JSON in {path.relative_to(ROOT)}: {exc}") from exc
+
+
+def canonical_json(value: Any) -> bytes:
+    return json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+
+
+def sha256(value: bytes) -> str:
+    return f"sha256:{hashlib.sha256(value).hexdigest()}"
 
 
 def validate_json_files() -> int:
@@ -56,7 +65,34 @@ def is_explicitly_synthetic(bundle: dict[str, Any]) -> bool:
     )
 
 
-def validate_eval_cases() -> set[str]:
+def validate_evidence() -> tuple[str, set[str]]:
+    manifest_path = ROOT / "evidence" / "manifest.json"
+    manifest = load_json(manifest_path)
+    chunk_path = (manifest_path.parent / manifest["chunkFile"]).resolve()
+    assert chunk_path.is_relative_to(ROOT), "Evidence chunk file escapes repository"
+    chunks = load_json(chunk_path)
+    assert manifest["status"] == "frozen", "Evidence corpus must be frozen"
+    assert manifest["chunkCount"] == len(chunks), "Evidence chunk count mismatch"
+    required = set(manifest["requiredChunkMetadata"])
+    chunk_ids: set[str] = set()
+    digest_input = []
+    for chunk in chunks:
+        assert required <= chunk.keys(), f"Missing evidence metadata: {chunk.get('chunkId')}"
+        chunk_id = chunk["chunkId"]
+        assert chunk_id not in chunk_ids, f"Duplicate evidence chunk: {chunk_id}"
+        chunk_ids.add(chunk_id)
+        assert chunk["corpusVersion"] == manifest["corpusVersion"]
+        assert sha256(chunk["content"].encode()) == chunk["contentHash"], (
+            f"Evidence content hash mismatch: {chunk_id}"
+        )
+        digest_input.append({"chunkId": chunk_id, "contentHash": chunk["contentHash"]})
+    assert sha256(canonical_json(sorted(digest_input, key=lambda item: item["chunkId"]))) == (
+        manifest["corpusHash"]
+    ), "Evidence corpus hash mismatch"
+    return manifest["corpusVersion"], chunk_ids
+
+
+def validate_eval_cases(evidence_version: str, evidence_chunk_ids: set[str]) -> set[str]:
     manifests = sorted((ROOT / "evals" / "cases").glob("*/case.json"))
     case_ids: set[str] = set()
 
@@ -90,6 +126,17 @@ def validate_eval_cases() -> set[str]:
         assert isinstance(gold["expectedFields"], dict), f"Missing field gold: {case_id}"
         assert isinstance(gold["expectedBiomarkers"], list), f"Missing biomarker gold: {case_id}"
         assert isinstance(gold["expectedProvenance"], dict), f"Missing provenance gold: {case_id}"
+        assert gold["evidenceCorpusVersion"] == evidence_version, (
+            f"Evidence version mismatch: {case_id}"
+        )
+        relevant = set(gold["goldRelevantEvidenceChunkIds"])
+        assert relevant <= evidence_chunk_ids, f"Unknown evidence chunk in gold: {case_id}"
+        if expected_valid:
+            assert gold["retrievalQuery"].strip(), f"Missing retrieval query: {case_id}"
+            assert relevant, f"Missing retrieval relevance gold: {case_id}"
+        else:
+            assert not gold["retrievalQuery"], f"Invalid case has retrieval query: {case_id}"
+            assert not relevant, f"Invalid case has retrieval relevance gold: {case_id}"
 
     return case_ids
 
@@ -97,7 +144,8 @@ def validate_eval_cases() -> set[str]:
 def main() -> None:
     json_count = validate_json_files()
     contract_count = validate_contracts()
-    case_ids = validate_eval_cases()
+    evidence_version, evidence_chunk_ids = validate_evidence()
+    case_ids = validate_eval_cases(evidence_version, evidence_chunk_ids)
     case_count = len(case_ids)
     suite = load_json(ROOT / "evals" / "suite-manifest.json")
     assert suite["caseCount"] == case_count, "Suite manifest case count does not match case files"
@@ -105,7 +153,8 @@ def main() -> None:
     assert suite_case_ids == case_ids, "Suite manifest case IDs do not match case files"
     print(
         f"Repository validation passed: {json_count} JSON files, "
-        f"{contract_count} schemas, {case_count} evaluation case(s)."
+        f"{contract_count} schemas, {case_count} evaluation case(s), "
+        f"{len(evidence_chunk_ids)} frozen evidence chunk(s)."
     )
 
 

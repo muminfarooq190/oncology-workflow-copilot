@@ -1,4 +1,4 @@
-.PHONY: help install test lint run-orchestrator run-web validate-contracts generate-week6 score-evals
+.PHONY: help install test lint run-orchestrator run-web validate-contracts generate-week6 generate-week8 score-evals score-retrieval
 
 help:
 	@echo "install             Install Python and web dependencies"
@@ -7,8 +7,9 @@ help:
 	@echo "run-orchestrator    Start the FastAPI service"
 	@echo "run-web             Start the React development server"
 	@echo "validate-contracts  Validate JSON files and contract examples"
-	@echo "generate-week6      Regenerate the deterministic 25-case Week 6 suite"
+	@echo "generate-week8      Regenerate the deterministic 60-case development suite"
 	@echo "score-evals          Score canonical predictions in evals/predictions"
+	@echo "score-retrieval      Score frozen-corpus retrieval and enforce recall@5"
 
 install:
 	python3 -m pip install -e "./services/orchestrator[dev]"
@@ -33,5 +34,10 @@ validate-contracts:
 generate-week6:
 	python3 scripts/generate_week6_cases.py
 
+generate-week8: generate-week6
+
 score-evals:
 	python3 -m evals.scorers.extraction evals/predictions --output evals/reports/extraction.json
+
+score-retrieval:
+	python3 -m evals.scorers.retrieval --output evals/reports/retrieval-week8.json --fail-below 0.90

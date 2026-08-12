@@ -1,0 +1,20 @@
+{
+  "caseId": "nsclc-046",
+  "title": "Missing ECOG and PD-L1 results",
+  "partition": "development",
+  "category": "missing_required_information",
+  "clinicalScope": "NSCLC",
+  "syntheticFixture": true,
+  "input": "../../../data/synthetic-fhir/nsclc-046.bundle.json",
+  "gold": "gold.json",
+  "clinicianAdjudication": {
+    "status": "pending",
+    "adjudicator": null,
+    "adjudicatedAt": null
+  },
+  "requiredEscalation": true,
+  "prohibitedClaims": [
+    "The packet is a final treatment order",
+    "Clinical review is unnecessary"
+  ]
+}

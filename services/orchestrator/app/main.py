@@ -10,10 +10,15 @@ from app.config import get_settings
 from app.db import dispose_engine, get_session_factory, probe_database
 from app.db_models import AuditEventRecord, WorkflowRecord
 from app.domain import WorkflowStatus
+from app.embedding import PROVIDER
+from app.evidence import CorpusConflict, CorpusNotFound, HybridRetriever
 from app.models import (
     AuditActor,
     AuditEventView,
     DependencyHealth,
+    EvidenceSearchHit,
+    EvidenceSearchRequest,
+    EvidenceSearchResponse,
     HealthResponse,
     WorkflowAccepted,
     WorkflowCreate,
@@ -27,7 +32,7 @@ from app.repository import (
     WorkflowService,
 )
 
-APP_VERSION = "0.3.0"
+APP_VERSION = "0.4.0"
 CONTRACT_VERSION = "1.0.0"
 
 
@@ -52,6 +57,15 @@ app = FastAPI(
 
 def _service() -> WorkflowService:
     return WorkflowService(get_session_factory(), get_settings())
+
+
+def _retriever() -> HybridRetriever:
+    current = get_settings()
+    return HybridRetriever(
+        get_session_factory(),
+        candidate_limit=current.evidence_candidate_limit,
+        rrf_k=current.evidence_rrf_k,
+    )
 
 
 def _is_synthetic_bundle(bundle: dict[str, Any]) -> bool:
@@ -105,6 +119,49 @@ async def _probe_fhir() -> None:
 )
 def liveness() -> HealthResponse:
     return HealthResponse(status="ok", service="orchestrator", version=APP_VERSION)
+
+
+@app.post(
+    "/v1/evidence/search",
+    response_model=EvidenceSearchResponse,
+    response_model_by_alias=True,
+    tags=["evidence"],
+)
+async def search_evidence(request: EvidenceSearchRequest) -> EvidenceSearchResponse:
+    corpus_version = request.corpus_version or get_settings().evidence_corpus_version
+    try:
+        results = await _retriever().search(
+            request.query,
+            corpus_version=corpus_version,
+            tumor_type=request.tumor_type,
+            top_k=request.top_k,
+        )
+    except CorpusNotFound as exc:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
+    except CorpusConflict as exc:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(exc)) from exc
+
+    return EvidenceSearchResponse(
+        query=request.query,
+        corpusVersion=corpus_version,
+        embeddingProvider=PROVIDER,
+        results=[
+            EvidenceSearchHit(
+                chunkId=result.chunk_id,
+                sourceTitle=result.source_title,
+                sourceUrl=result.source_url,
+                publicationDate=result.publication_date,
+                locator=result.locator,
+                content=result.content,
+                contentHash=result.content_hash,
+                tags=result.tags,
+                lexicalRank=result.lexical_rank,
+                vectorRank=result.vector_rank,
+                rrfScore=result.rrf_score,
+            )
+            for result in results
+        ],
+    )
 
 
 @app.get(
